@@ -3,26 +3,27 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import { SpPage } from '../pages/sp/sp';
+import { VpPage } from '../pages/vp/vp';
+import { strings } from "./resources";
 
 @Component({
   templateUrl: 'app.html'
 })
-export class MyApp {
+export class VsaApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = SpPage;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, icon: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
+      { title: strings.sp, icon: "clipboard", component: SpPage },
+      { title: strings.vp, icon: "list-box", component: VpPage }
     ];
 
   }
