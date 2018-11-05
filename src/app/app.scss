@@ -4,6 +4,24 @@
   color: white;
 }
 
+[color="app"] {
+  background-color: #67a744;
+  color: #fff;
+}
+
+.tabs .tabbar {
+  max-height: 45px;
+  background-color: #67a744;
+}
+
+.tabs-md .tab-button {
+  color: #fff !important;
+}
+
+.tabs-md .tab-button[aria-selected=true] {
+  color: #32db64 !important;
+}
+
 p, b {
   font-family: "Roboto", "Helvetica Neue", sans-serif;
 }

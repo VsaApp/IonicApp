@@ -1,0 +1,48 @@
+#sp-list {
+  padding: 0;
+  margin: 0;
+}
+
+#sp-row {
+  padding-left: 0;
+  padding-right: 0;
+  display: block;
+  vertical-align: middle;
+}
+
+#sp-row-block-item {
+  display: block;
+  height: 100%;
+}
+
+#sp-row-unit {
+  padding-right: 1em;
+  float: left;
+  height: 100%;
+  color: #000;
+}
+
+#sp-row-teacher {
+  text-align: right;
+  color: #000;
+}
+
+#sp-row-room {
+  text-align: right;
+}
+
+#sp-row-lesson {
+  color: #67a744;
+}
+#sp-row-block-left {
+  float: left;
+  padding: 0;
+  margin: 0;
+}
+
+#sp-row-block-right {
+  float: right;
+  text-align: right;
+  padding: 0;
+  margin: 0;
+}

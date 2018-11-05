@@ -1,0 +1,18 @@
+<ion-content padding>
+  <ion-list id="sp-list">
+    <button id="sp-row" ion-item *ngFor="let item of items" (click)="spRowClicked($event, item)">
+      <p id="sp-row-unit" item-start>{{item.unit}}</p>
+      <div id=sp-row-block-item>
+        <div id="sp-row-block-left">
+          <b id="sp-row-lesson">{{item.lesson}}</b>
+          <p id="sp-row-time">{{item.time}}</p>
+        </div>
+        <div id="sp-row-block-right">
+          <p id="sp-row-teacher">{{item.teacher}}</p>
+          <b id="sp-row-room">{{item.room}}</b>
+        </div>
+      </div>
+    </button>
+  </ion-list>
+
+</ion-content>

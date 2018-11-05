@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header no-border>
   <ion-navbar>
     <button ion-button menuToggle color="light">
       <ion-icon name="menu"></ion-icon>
@@ -8,29 +8,8 @@
 </ion-header>
 
 <ion-content padding>
-  <div id="day">
-    <button id="previous-day" class="day-line switch-day" (click)="previousDay($event)">
-      <ion-icon name="arrow-round-back"></ion-icon>
-    </button>
-    <p id="sp-current-day" class="day-line">{{day}}</p>
-    <button id="next-day" class="day-line switch-day" (click)="nextDay($event)">
-      <ion-icon name="arrow-round-forward"></ion-icon>
-    </button>
-  </div>
-
-  <ion-list id="sp-list">
-    <button id="sp-row" ion-item *ngFor="let item of items" (click)="spRowClicked($event, item)">
-      <p id="sp-row-unit" item-start>{{item.unit}}</p>
-      <div id="sp-row-block-left" item-start>
-        <b id="sp-row-lesson">{{item.lesson}}</b>
-        <p id="sp-row-time">{{item.time}}</p>
-      </div>
-      <div id="sp-row-block-right" item-end>
-        <p id="sp-row-teacher">{{item.teacher}}</p>
-        <b id="sp-row-room">{{item.room}}</b>
-      </div>
-
-    </button>
-  </ion-list>
-
+  <ion-tabs tabsPlacement="top" tabsHighlight="true" name="days">
+    <ion-tab [root]="dayRoot" *ngFor="let day of days" class="tab" [tabTitle]="day" [rootParams]="{name: day}">
+    </ion-tab>
+  </ion-tabs>
 </ion-content>

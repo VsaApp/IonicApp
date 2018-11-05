@@ -6,6 +6,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { SpPage } from '../pages/sp/sp';
 import { VpPage } from '../pages/vp/vp';
 import { strings } from "./resources";
+import { SpHolder} from "../holder/Sp";
+import {Http} from "@angular/http";
+import {VpHolder} from "../holder/Vp";
 
 @Component({
   templateUrl: 'app.html'
@@ -13,11 +16,10 @@ import { strings } from "./resources";
 export class VsaApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = SpPage;
-
+  rootPage: any;
   pages: Array<{title: string, icon: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public http: Http) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -29,11 +31,22 @@ export class VsaApp {
   }
 
   initializeApp() {
+
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
+      this.loadAll(() : void => {
+        this.rootPage = SpPage;
+        this.statusBar.styleDefault();
+        this.splashScreen.hide();
+      });
+    });
+  }
+
+  loadAll(finished: Function){
+    // Fist load sp...
+    SpHolder.load(this.http, () : void => {
+      VpHolder.load(this.http, () : void => {
+        finished();
+      })
     });
   }
 

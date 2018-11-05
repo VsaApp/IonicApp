@@ -2,37 +2,25 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { strings } from "../../app/resources";
+import { DayOfSp } from "./day/day";
+import { VpPage } from "../vp/vp";
+import {Http} from "@angular/http";
 
 @Component({
   selector: 'page-sp',
   templateUrl: 'sp.html'
 })
 export class SpPage {
-  items: Array<{unit: number, lesson: string, teacher: string, time: string, room: string}>;
   title: string;
-  day: string;
+  days: Array<string>;
+  dayRoot = DayOfSp;
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public http: Http) {
     this.title = strings.sp;
-    this.day = "Montag";
-    this.items = [];
-    this.items.push({
-      unit: 1,
-      lesson: 'Deutsch',
-      teacher: 'EGL',
-      time: '10:30 - 11:30',
-      room: '225'
-    })
-    this.items.push({
-      unit: 2,
-      lesson: 'Englisch',
-      teacher: 'MAR',
-      time: '11:40 - 12:40',
-      room: '512'
-    })
+    this.days = ["MO", "DI", "MI", "DO", "FR"];
   }
 
-  spRowClicked(event, item) {
+  spRowClicked(event, item, day) {
     // That's right, we're pushing to ourselves!
   }
 

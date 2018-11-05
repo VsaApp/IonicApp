@@ -1,6 +1,6 @@
 {
-  "name": "Ionic",
-  "short_name": "Ionic",
+  "name": "ViktoriaApp",
+  "short_name": "VsaApp",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{
