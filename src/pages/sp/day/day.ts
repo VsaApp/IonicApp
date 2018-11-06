@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavParams} from 'ionic-angular';
+import {NavController, NavParams} from 'ionic-angular';
 
 import {nameOfSubjects, strings, times} from '../../../app/resources';
 import {SpHolder} from '../../../holder/Sp';
@@ -14,7 +14,7 @@ export class DayOfSp {
   items: Array<{ unit: number, lesson: string, teacher: string, time: string, room: string }>;
   title: string;
 
-  constructor(navParams: NavParams) {
+  constructor(navParams: NavParams, public navCtrl: NavController) {
     this.title = strings.sp;
     this.name = navParams.data.name;
     console.log('Passed params', this.name);
@@ -50,5 +50,22 @@ export class DayOfSp {
 
   spRowClicked(event, item) {
     // That's right, we're pushing to ourselves!
+  }
+
+  swipe(event) {
+    let day: number = ['MO', 'DI', 'MI', 'DO', 'FR'].indexOf(this.name);
+    if (event.direction === 2) {
+      day++;
+    }
+    if (event.direction === 4) {
+      day--;
+    }
+    if (day < 0) {
+      day = 4;
+    }
+    if (day > 4) {
+      day = 0;
+    }
+    this.navCtrl.parent.select(day);
   }
 }

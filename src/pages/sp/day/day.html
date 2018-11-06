@@ -1,5 +1,5 @@
 <ion-content padding>
-  <ion-list id='sp-list'>
+  <ion-list id='sp-list' (swipe)='swipe($event)'>
     <button (click)='spRowClicked($event, item)' *ngFor='let item of items' id='sp-row' ion-item>
       <p id='sp-row-unit' item-start>{{item.unit}}</p>
       <div id=sp-row-block-item>

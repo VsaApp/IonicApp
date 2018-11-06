@@ -22,12 +22,4 @@ export class SpPage {
   spRowClicked(event, item, day) {
     // That's right, we're pushing to ourselves!
   }
-
-  previousDay(event) {
-    //TODO: DO something
-  }
-
-  nextDay(event) {
-    //TODO: DO something
-  }
 }
