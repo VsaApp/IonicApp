@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {NavController, NavParams} from 'ionic-angular';
 
-import { strings } from "../../app/resources";
-import {Http} from "@angular/http";
+import {strings} from '../../app/resources';
+import {Http} from '@angular/http';
 
 @Component({
   selector: 'page-vp',
@@ -11,7 +11,7 @@ import {Http} from "@angular/http";
 export class VpPage {
   selectedItem: any;
   icons: string[];
-  items: Array<{title: string, note: string, icon: string}>;
+  items: Array<{ title: string, note: string, icon: string }>;
   title: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
@@ -21,7 +21,7 @@ export class VpPage {
 
     // Let's populate this page with some filler content for funzies
     this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-    'american-football', 'boat', 'bluetooth', 'build'];
+      'american-football', 'boat', 'bluetooth', 'build'];
 
     this.items = [];
     for (let i = 1; i < 11; i++) {

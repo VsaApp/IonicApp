@@ -1,10 +1,8 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {NavParams} from 'ionic-angular';
 
-import { strings } from "../../../app/resources";
-import { times } from "../../../app/resources";
-import { nameOfSubjects } from "../../../app/resources";
-import {SpHolder} from "../../../holder/Sp";
+import {nameOfSubjects, strings, times} from '../../../app/resources';
+import {SpHolder} from '../../../holder/Sp';
 
 @Component({
   selector: 'sp-day',
@@ -13,7 +11,7 @@ import {SpHolder} from "../../../holder/Sp";
 
 export class DayOfSp {
   name: string;
-  items: Array<{unit: number, lesson: string, teacher: string, time: string, room: string}>;
+  items: Array<{ unit: number, lesson: string, teacher: string, time: string, room: string }>;
   title: string;
 
   constructor(navParams: NavParams) {
@@ -23,7 +21,7 @@ export class DayOfSp {
     this.items = [];
 
     if (SpHolder.sp != undefined) {
-      let lessons = SpHolder.sp[["MO", "DI", "MI", "DO", "FR"].indexOf(this.name)].lessons;
+      let lessons = SpHolder.sp[['MO', 'DI', 'MI', 'DO', 'FR'].indexOf(this.name)].lessons;
       let i: number;
       for (i = 0; i < lessons.length; i++) {
         let unit = lessons[i];
@@ -39,14 +37,14 @@ export class DayOfSp {
         }
       }
       if (this.items.length > 5) {
-          this.items.splice(5, 0,{
-            unit: 6,
-            lesson: strings.lunch,
-            teacher: "",
-            time: "",
-            room: ""
-          })
-        }
+        this.items.splice(5, 0, {
+          unit: 6,
+          lesson: strings.lunch,
+          teacher: '',
+          time: '',
+          room: ''
+        })
+      }
     }
   }
 

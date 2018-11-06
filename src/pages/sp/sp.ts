@@ -1,10 +1,9 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {NavController} from 'ionic-angular';
 
-import { strings } from "../../app/resources";
-import { DayOfSp } from "./day/day";
-import { VpPage } from "../vp/vp";
-import {Http} from "@angular/http";
+import {strings} from '../../app/resources';
+import {DayOfSp} from './day/day';
+import {Http} from '@angular/http';
 
 @Component({
   selector: 'page-sp',
@@ -17,18 +16,18 @@ export class SpPage {
 
   constructor(public navCtrl: NavController, public http: Http) {
     this.title = strings.sp;
-    this.days = ["MO", "DI", "MI", "DO", "FR"];
+    this.days = ['MO', 'DI', 'MI', 'DO', 'FR'];
   }
 
   spRowClicked(event, item, day) {
     // That's right, we're pushing to ourselves!
   }
 
-  previousDay(event){
+  previousDay(event) {
     //TODO: DO something
   }
 
-  nextDay(event){
+  nextDay(event) {
     //TODO: DO something
   }
 }

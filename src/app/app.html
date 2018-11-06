@@ -1,16 +1,16 @@
-<ion-menu [content]="content" [swipeEnabled]="true">
+<ion-menu [content]='content' [swipeEnabled]='true'>
   <ion-header>
     <ion-toolbar>
-      <img src="../assets/imgs/logo_white.png" id="menu-icon">
-      <p id="menu-title" color="light">Viktoriaschule</p>
-      <p id="menu-grade">EF</p>
+      <img id='menu-icon' src='../assets/imgs/logo_white.png'>
+      <p color='light' id='menu-title'>Viktoriaschule</p>
+      <p id='menu-grade'>EF</p>
     </ion-toolbar>
   </ion-header>
 
   <ion-content>
     <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        <ion-icon [name]="p.icon" item-start></ion-icon>
+      <button (click)='openPage(p)' *ngFor='let p of pages' ion-item menuClose>
+        <ion-icon [name]='p.icon' item-start></ion-icon>
         {{p.title}}
       </button>
     </ion-list>
@@ -19,4 +19,4 @@
 </ion-menu>
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
-<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<ion-nav [root]='rootPage' #content swipeBackEnabled='false'></ion-nav>

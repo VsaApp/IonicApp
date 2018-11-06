@@ -1,15 +1,15 @@
 <ion-header no-border>
   <ion-navbar>
-    <button ion-button menuToggle color="light">
-      <ion-icon name="menu"></ion-icon>
+    <button color='light' ion-button menuToggle>
+      <ion-icon name='menu'></ion-icon>
     </button>
-    <ion-title><span color="light">{{title}}</span></ion-title>
+    <ion-title><span color='light'>{{title}}</span></ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-tabs tabsPlacement="top" tabsHighlight="true" name="days">
-    <ion-tab [root]="dayRoot" *ngFor="let day of days" class="tab" [tabTitle]="day" [rootParams]="{name: day}">
+  <ion-tabs tabsPlacement='top' tabsHighlight='true' name='days'>
+    <ion-tab [root]='dayRoot' *ngFor='let day of days' class='tab' [tabTitle]='day' [rootParams]='{name: day}'>
     </ion-tab>
   </ion-tabs>
 </ion-content>
