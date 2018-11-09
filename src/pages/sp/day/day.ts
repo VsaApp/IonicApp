@@ -27,9 +27,10 @@ export class DayOfSp {
         let unit = lessons[i];
         if (unit.length > 0) {
           let lesson = unit[0];
+          let longName = lesson.lesson in nameOfSubjects ? nameOfSubjects[lesson.lesson] : lesson.lesson;
           this.items.push({
             unit: i + 1,
-            lesson: nameOfSubjects[lesson.lesson],
+            lesson: longName,
             teacher: lesson.teacher,
             time: times[i],
             room: lesson.room

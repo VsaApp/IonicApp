@@ -1,0 +1,18 @@
+<ion-content padding>
+  <img id="image" src="../../assets/imgs/logo.png" />
+  <p id="title">VsaApp</p>
+  <ion-item color="transparent">
+    <ion-label>Klasse</ion-label>
+    <ion-select id="grade-select" color="transparent" [(ngModel)]="grade">
+      <ion-option id="grade-option" *ngFor="let grade of grades" [value]="grade">{{grade}}</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-input placeholder="Benutzername" [(ngModel)]="username"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="password" placeholder="Password" [(ngModel)]="password"></ion-input>
+  </ion-item>
+  <p id="wrongValues" *ngIf="wrong">{{information}}</p>
+  <button id="login-button" (click)="login()">Login</button>
+</ion-content>
