@@ -1,17 +1,16 @@
-import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { ToastController } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
+import {Component, ViewChild} from '@angular/core';
+import {Nav, Platform, ToastController} from 'ionic-angular';
+import {StatusBar} from '@ionic-native/status-bar';
+import {SplashScreen} from '@ionic-native/splash-screen';
+import {Storage} from '@ionic/storage';
 
-import { SpPage } from '../pages/sp/sp';
-import { VpPage } from '../pages/vp/vp';
-import { strings } from "./resources";
-import { SpHolder} from "../holder/Sp";
-import {Http} from "@angular/http";
-import {VpHolder} from "../holder/Vp";
-import {LoginPage} from "../pages/login/login";
+import {SpPage} from '../pages/sp/sp';
+import {VpPage} from '../pages/vp/vp';
+import {strings} from './resources';
+import {SpHolder} from '../holder/Sp';
+import {Http} from '@angular/http';
+import {VpHolder} from '../holder/Vp';
+import {LoginPage} from '../pages/login/login';
 
 @Component({
   templateUrl: 'app.html'
@@ -35,10 +34,12 @@ export class VsaApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.login(() : void => {
-        this.storage.get("grade").then((grade) => {this.grade = grade; });
-        VsaApp.loadAll(this.http, this.storage, (error) : void => {
-          if (error){
+      this.login((): void => {
+        this.storage.get('grade').then((grade) => {
+          this.grade = grade;
+        });
+        VsaApp.loadAll(this.http, this.storage, (error): void => {
+          if (error) {
             let toast = this.toastCtrl.create({
               message: strings.noConnection,
               duration: 3000,
@@ -53,26 +54,20 @@ export class VsaApp {
     });
   }
 
-  login(callback: Function){
-    let username: string;
-    let password: string;
+  login(callback: Function) {
     this.storage.keys().then(keys => {
-      console.log("Saved keys: ", keys);
-      if ("username" in keys && "password" in keys && "grade" in keys) {
+      console.log('Saved keys: ', keys);
+      if ('username' in keys && 'password' in keys && 'grade' in keys) {
         // Get saved login data...
-        this.storage.get("username").then(value => {
-          username = value;
-          this.storage.get("password").then(value => {
-            username = value;
-
+        this.storage.get('username').then(username => {
+          this.storage.get('password').then(password => {
             // Control saved login data...
-            let url = "https://api.vsa.lohl1kohl.de/validate?username=" + this.storage.get("username") + "&password=" + this.storage.get("password");
+            let url = 'https://api.vsa.lohl1kohl.de/validate?username=' + this.storage.get('username') + '&password=' + this.storage.get('password');
             this.http.get(url).timeout(5000).map(res => res.json()).subscribe((data) => {
-              console.log("Login: ", data);
-              if (data == "0") {
+              console.log('Login: ', data);
+              if (data == '0') {
                 callback()
-              }
-              else {
+              } else {
                 this.rootPage = LoginPage;
               }
             }, (error) => {
@@ -81,19 +76,24 @@ export class VsaApp {
           });
         });
 
-      }
-      else {
+      } else {
         this.rootPage = LoginPage;
       }
     });
   }
 
-  static loadAll(http: Http, storage: Storage, finished: Function){
+  static loadAll(http: Http, storage: Storage, finished: Function) {
     // Fist load sp...
     SpHolder.load(http, storage, (error): void => {
-      if (error) { finished(false); return; }
+      if (error) {
+        finished(false);
+        return;
+      }
       VpHolder.load(http, storage, (error): void => {
-        if (error) { finished(false); return; }
+        if (error) {
+          finished(false);
+          return;
+        }
         finished();
       })
     });

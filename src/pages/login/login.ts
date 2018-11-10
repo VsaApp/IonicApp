@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
-import {SpPage} from "../sp/sp";
-import { strings } from "../../app/resources";
-import { grades } from "../../app/resources";
+import {SpPage} from '../sp/sp';
+import { strings } from '../../app/resources';
+import { grades } from '../../app/resources';
 import jsSHA from 'jssha';
-import {Http} from "@angular/http";
+import {Http} from '@angular/http';
 import 'rxjs/add/operator/timeout';
 import 'rxjs/add/operator/map';
-import {Storage} from "@ionic/storage";
-import {VsaApp} from "../../app/app.component";
-import {SplashScreen} from "@ionic-native/splash-screen";
+import {Storage} from '@ionic/storage';
+import {VsaApp} from '../../app/app.component';
+import {SplashScreen} from '@ionic-native/splash-screen';
 
 @Component({
   selector: 'page-login',
@@ -32,18 +32,18 @@ export class LoginPage {
   }
 
   static getHash(text: string){
-    let shaObj = new jsSHA("SHA-256", "TEXT");
+    let shaObj = new jsSHA('SHA-256', 'TEXT');
     shaObj.update(text);
-    return shaObj.getHash("HEX");
+    return shaObj.getHash('HEX');
   }
 
   login() {
     let hashName = LoginPage.getHash(this.username);
     let hashPassword = LoginPage.getHash(this.password);
-    let url = "https://api.vsa.lohl1kohl.de/validate?username=" + hashName + "&password=" + hashPassword;
+    let url = 'https://api.vsa.lohl1kohl.de/validate?username=' + hashName + '&password=' + hashPassword;
     this.http.get(url).timeout(5000).map(res => res.json()).subscribe((data) => {
-      console.log("Login: ", data);
-        if (data == "0") {
+      console.log('Login: ', data);
+        if (data == '0') {
           this.wrong = false;
           this.splashScreen.show();
           this.storage.set('username', hashName).then(() =>{

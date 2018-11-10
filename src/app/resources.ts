@@ -2,7 +2,7 @@ export const strings = {
   sp: 'Stundenplan',
   vp: 'Vertretungsplan',
   menu: 'Menü',
-  lessonFree: "Freistunde",
+  lessonFree: 'Freistunde',
   lunch: 'Mittagspause',
   wrongValues: 'Benutzername oder Password ist falsch',
   noConnection: 'Verbindung zum Server fehlgeschlagen'
@@ -57,23 +57,23 @@ export const nameOfSubjects = {
 };
 
 export const grades = [
-  "5a",
-  "5b",
-  "5c",
-  "6a",
-  "6b",
-  "6c",
-  "7a",
-  "7b",
-  "7c",
-  "8a",
-  "8b",
-  "8c",
-  "9a",
-  "9b",
-  "9c",
-  "EF",
-  "Q1",
-  "Q2"
+  '5a',
+  '5b',
+  '5c',
+  '6a',
+  '6b',
+  '6c',
+  '7a',
+  '7b',
+  '7c',
+  '8a',
+  '8b',
+  '8c',
+  '9a',
+  '9b',
+  '9c',
+  'EF',
+  'Q1',
+  'Q2'
 ];
 

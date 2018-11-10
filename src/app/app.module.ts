@@ -6,7 +6,7 @@ import { VsaApp } from './app.component';
 import { SpPage } from '../pages/sp/sp';
 import { VpPage } from '../pages/vp/vp';
 import { DayOfSp } from '../pages/sp/day/day';
-import { LoginPage} from "../pages/login/login";
+import { LoginPage} from '../pages/login/login';
 
 import { HttpModule } from '@angular/http';
 import { StatusBar } from '@ionic-native/status-bar';
