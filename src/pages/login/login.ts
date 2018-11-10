@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {NavController} from 'ionic-angular';
 
 import {SpPage} from '../sp/sp';
-import { strings } from '../../app/resources';
-import { grades } from '../../app/resources';
+import {grades, strings} from '../../app/resources';
 import jsSHA from 'jssha';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/timeout';
@@ -31,7 +30,7 @@ export class LoginPage {
     this.splashScreen.hide();
   }
 
-  static getHash(text: string){
+  static getHash(text: string) {
     let shaObj = new jsSHA('SHA-256', 'TEXT');
     shaObj.update(text);
     return shaObj.getHash('HEX');
@@ -46,23 +45,22 @@ export class LoginPage {
         if (data == '0') {
           this.wrong = false;
           this.splashScreen.show();
-          this.storage.set('username', hashName).then(() =>{
-            this.storage.set('password', hashPassword).then(() =>{
-              this.storage.set('grade', this.grade).then(() =>{
-                VsaApp.loadAll(this.http, this.storage, () : void => {
+          this.storage.set('username', hashName).then(() => {
+            this.storage.set('password', hashPassword).then(() => {
+              this.storage.set('grade', this.grade).then(() => {
+                VsaApp.loadAll(this.http, this.storage, (): void => {
                   this.navCtrl.setRoot(SpPage);
                 });
               });
             });
           });
-        }
-        else {
+        } else {
           this.wrong = true;
           this.password = '';
         }
       }, (error) => {
         this.wrong = true;
-        this.information  = strings.noConnection;
+      this.information = strings.noConnection;
       }
     );
   }

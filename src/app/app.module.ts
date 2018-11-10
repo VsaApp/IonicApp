@@ -2,16 +2,16 @@ import {BrowserModule} from '@angular/platform-browser';
 import {ErrorHandler, NgModule} from '@angular/core';
 import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 
-import { VsaApp } from './app.component';
-import { SpPage } from '../pages/sp/sp';
-import { VpPage } from '../pages/vp/vp';
-import { DayOfSp } from '../pages/sp/day/day';
-import { LoginPage} from '../pages/login/login';
+import {VsaApp} from './app.component';
+import {SpPage} from '../pages/sp/sp';
+import {VpPage} from '../pages/vp/vp';
+import {DayOfSp} from '../pages/sp/day/day';
+import {LoginPage} from '../pages/login/login';
 
-import { HttpModule } from '@angular/http';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { IonicStorageModule } from '@ionic/storage';
+import {HttpModule} from '@angular/http';
+import {StatusBar} from '@ionic-native/status-bar';
+import {SplashScreen} from '@ionic-native/splash-screen';
+import {IonicStorageModule} from '@ionic/storage';
 
 @NgModule({
   declarations: [
