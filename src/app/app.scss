@@ -6,7 +6,7 @@
 }
 
 [color='app'] {
-  background-color: #67a744;
+  background-color: color($colors, primaryDark);
   color: #fff;
 }
 
@@ -16,7 +16,7 @@
 
 .tabs .tabbar {
   max-height: 45px;
-  background-color: #67a744;
+  background-color: color($colors, primaryDark);
 }
 
 .tabs-md .tab-button {
@@ -24,7 +24,16 @@
 }
 
 .tabs-md .tab-button[aria-selected=true] {
-  color: #32db64 !important;
+  color: color($colors, secondary) !important;
+}
+
+.tab-button {
+  color: white !important;
+}
+
+.tab-button[aria-selected=true] {
+  border-bottom: none;
+  color: color($colors, primary) !important;
 }
 
 p, b {
@@ -57,6 +66,7 @@ p, b {
 
 .scroll-content {
   overflow-y: auto;
+  padding-bottom: 0 !important;
 }
 
 ion-title {
@@ -64,5 +74,14 @@ ion-title {
 }
 
 .toolbar-background {
-  background-color: #67a744;
+  background-color: color($colors, primaryDark);
+}
+
+ion-item {
+  width: 100% !important;
+  border-bottom: 2px color($colors, secondary) solid !important;
+}
+
+ion-item .item-inner {
+  border: none !important;
 }

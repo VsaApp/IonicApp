@@ -43,7 +43,8 @@ $colors: (
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
-
+$alert-ios-content-max-height: 70vh !default;
+$alert-ios-content-max-width: 70vh !default;
 
 // App Material Design Variables
 // --------------------------------------------------
@@ -63,6 +64,7 @@ $colors: (
 // default are overridden.
 
 @import 'ionic.theme.default';
+$alert-md-content-max-height: 70vh !default;
 
 
 // Ionicons
