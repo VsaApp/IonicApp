@@ -32,6 +32,23 @@ export class VsaApp {
     ];
   }
 
+  static loadAll(http: Http, storage: Storage, finished: Function) {
+    // Fist load sp...
+    SpHolder.load(http, storage, (error): void => {
+      if (error) {
+        finished(false);
+        return;
+      }
+      VpHolder.load(http, storage, (error): void => {
+        if (error) {
+          finished(false);
+          return;
+        }
+        finished();
+      })
+    });
+  }
+
   initializeApp() {
     this.platform.ready().then(() => {
       this.login((): void => {
@@ -57,12 +74,12 @@ export class VsaApp {
   login(callback: Function) {
     this.storage.keys().then(keys => {
       console.log('Saved keys: ', keys);
-      if ('username' in keys && 'password' in keys && 'grade' in keys) {
+      if (keys.indexOf('username') > -1 && keys.indexOf('password') > -1 && keys.indexOf('grade') > -1) {
         // Get saved login data...
         this.storage.get('username').then(username => {
           this.storage.get('password').then(password => {
             // Control saved login data...
-            let url = 'https://api.vsa.lohl1kohl.de/validate?username=' + this.storage.get('username') + '&password=' + this.storage.get('password');
+            let url = 'https://api.vsa.lohl1kohl.de/validate?username=' + username + '&password=' + password;
             this.http.get(url).timeout(5000).map(res => res.json()).subscribe((data) => {
               console.log('Login: ', data);
               if (data == '0') {
@@ -79,23 +96,6 @@ export class VsaApp {
       } else {
         this.rootPage = LoginPage;
       }
-    });
-  }
-
-  static loadAll(http: Http, storage: Storage, finished: Function) {
-    // Fist load sp...
-    SpHolder.load(http, storage, (error): void => {
-      if (error) {
-        finished(false);
-        return;
-      }
-      VpHolder.load(http, storage, (error): void => {
-        if (error) {
-          finished(false);
-          return;
-        }
-        finished();
-      })
     });
   }
 
