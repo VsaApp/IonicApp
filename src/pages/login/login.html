@@ -8,10 +8,12 @@
     </ion-select>
   </ion-item>
   <ion-item>
-    <ion-input [(ngModel)]='username' placeholder='Benutzername'></ion-input>
+    <ion-input (keyup.enter)='this.passwordInput.setFocus()' [(ngModel)]='username'
+               placeholder='Benutzername'></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input [(ngModel)]='password' placeholder='Password' type='password'></ion-input>
+    <ion-input #passwordInput (keyup.enter)='this.login()' [(ngModel)]='password' placeholder='Passwort'
+               type='password'></ion-input>
   </ion-item>
   <p *ngIf='wrong' id='wrongValues'>{{information}}</p>
   <button (click)='login()' id='login-button'>Login</button>

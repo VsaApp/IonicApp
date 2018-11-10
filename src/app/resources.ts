@@ -5,7 +5,8 @@ export const strings = {
   lessonFree: 'Freistunde',
   lunch: 'Mittagspause',
   wrongValues: 'Benutzername oder Password ist falsch',
-  noConnection: 'Verbindung zum Server fehlgeschlagen'
+  noConnection: 'Verbindung zum Server fehlgeschlagen',
+  noGradeSet: 'Keine Klasse gesetzt'
 };
 
 export const times = [
