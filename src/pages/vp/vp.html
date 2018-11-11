@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header no-border>
   <ion-navbar>
     <button color='light' ion-button menuToggle>
       <ion-icon name='menu'></ion-icon>
@@ -7,17 +7,11 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <button ion-item *ngFor='let item of items' (click)='itemTapped($event, item)'>
-      <ion-icon [name]='item.icon' item-start></ion-icon>
-      {{item.title}}
-      <div class='item-note' item-end>
-        {{item.note}}
-      </div>
-    </button>
-  </ion-list>
-  <div *ngIf='selectedItem' padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
+<ion-content padding>
+  <ion-tabs tabsPlacement='top' tabsHighlight='true' name='days'>
+    <ion-tab [root]='dayRoot' class='tab' [tabTitle]='this.titleToday' [rootParams]='{today: true}'>
+    </ion-tab>
+    <ion-tab [root]='dayRoot' class='tab' [tabTitle]='this.titleTomorrow' [rootParams]='{today: false}'>
+    </ion-tab>
+  </ion-tabs>
 </ion-content>

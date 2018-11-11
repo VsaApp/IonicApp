@@ -1,0 +1,68 @@
+#vp-list {
+  padding: 0;
+  margin: 0;
+}
+
+#vp-row {
+  padding: 0 0 0 5px;
+  margin-bottom: 10px;
+}
+
+.color-green {
+  border-left: 5px color($colors, primary) solid;
+}
+
+.color-orange {
+  border-left: 5px color($colors, unknown) solid;
+}
+
+.color-red {
+  border-left: 5px color($colors, danger) solid;
+}
+
+.label {
+  margin: 5px;
+  padding: 0;
+}
+
+#vp-row-block-item {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 70% 15% 15%;
+}
+
+#vp-row-block-item * {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-rows: 50% 50%;
+}
+
+#vp-row-block-right, #vp-row-block-center {
+  text-align: right;
+}
+
+#vp-row-lesson {
+  color: color($colors, primary);
+}
+
+#vp-row .item-inner {
+  background: none !important;
+  padding-right: 0;
+}
+
+#vp-unit-block {
+  display: grid;
+  grid-template-columns: 10% 90%;
+}
+
+#vp-row-unit {
+  margin-top: 5px;
+  font-size: 20px;
+}
+
+.vp-meta {
+  text-align: center;
+  margin: 0 0 5px;
+}

@@ -22,8 +22,7 @@ export class DayOfSp {
 
     if (SpHolder.sp != undefined) {
       let lessons = SpHolder.sp[['MO', 'DI', 'MI', 'DO', 'FR'].indexOf(this.name)].lessons;
-      let i: number;
-      for (i = 0; i < lessons.length; i++) {
+      for (let i: number = 0; i < lessons.length; i++) {
         let unit = lessons[i];
         if (unit.length > 0) {
           let lesson = unit[0];

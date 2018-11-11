@@ -36,8 +36,10 @@
   color: color($colors, primary) !important;
 }
 
-p, b {
+p, b, i {
   font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+  min-height: 1.25em;
+  line-height: 1.25;
 }
 
 #menu-icon {
@@ -82,6 +84,25 @@ ion-item {
   border-bottom: 2px color($colors, secondary) solid !important;
 }
 
-ion-item .item-inner {
+.list-ios {
   border: none !important;
+}
+
+.item-inner {
+  border: none !important;
+  background: none !important;
+  padding-right: 0;
+}
+
+.content-ios:not([no-bounce]) > .scroll-content::before {
+  bottom: 0 !important;
+}
+
+.md ion-list > .item:last-child,
+.md ion-list > .item-wrapper:last-child .item,
+.wp ion-list > .item:last-child,
+.wp ion-list > .item-wrapper:last-child .item,
+.ios ion-list > .item:last-child,
+.ios ion-list > .item-wrapper:last-child .item {
+  border-bottom: none;
 }

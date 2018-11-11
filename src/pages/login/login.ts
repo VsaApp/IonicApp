@@ -52,13 +52,13 @@ export class LoginPage {
     let hashPassword = LoginPage.getHash(this.password);
     let url = 'https://api.vsa.lohl1kohl.de/validate?username=' + hashName + '&password=' + hashPassword;
     this.http.get(url).timeout(5000).map(res => res.json()).subscribe((data) => {
-      try {
-        data = parseInt(data);
-      } catch (e) {
+        try {
+          data = parseInt(data);
+        } catch (e) {
 
-      }
-      console.log('Login: ', data);
-      if (data === 0) {
+        }
+        console.log('Login: ', data);
+        if (data === 0) {
           this.wrong = false;
           this.splashScreen.show();
           this.storage.set('username', hashName).then(() => {
@@ -73,11 +73,11 @@ export class LoginPage {
         } else {
           this.wrong = true;
           this.password = '';
-        this.information = strings.wrongValues;
+          this.information = strings.wrongValues;
         }
-      }, (error) => {
+      }, () => {
         this.wrong = true;
-      this.information = strings.noConnection;
+        this.information = strings.noConnection;
       }
     );
   }

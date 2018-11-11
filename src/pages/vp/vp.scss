@@ -1,3 +1,35 @@
 page-vp {
-
+  padding: 0;
+  margin: 0;
 }
+
+#day {
+  width: 100%;
+  display: flex;
+  align-content: center;
+  margin-bottom: 1em;
+}
+
+#previous-day {
+  float: left;
+}
+
+#next-day {
+  float: right;
+}
+
+.day-line {
+  float: left;
+}
+
+.switch-day {
+  background: none;
+}
+
+#vp-current-day {
+  text-align: center;
+  margin: 0 auto 0 auto;
+  padding: 0 0 0 0;
+  font-size: 120%;
+}
+

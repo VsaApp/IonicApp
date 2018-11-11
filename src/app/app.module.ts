@@ -6,6 +6,7 @@ import {VsaApp} from './app.component';
 import {SpPage} from '../pages/sp/sp';
 import {VpPage} from '../pages/vp/vp';
 import {DayOfSp} from '../pages/sp/day/day';
+import {DayOfVp} from '../pages/vp/day/day';
 import {LoginPage} from '../pages/login/login';
 
 import {HttpModule} from '@angular/http';
@@ -19,6 +20,7 @@ import {IonicStorageModule} from '@ionic/storage';
     SpPage,
     DayOfSp,
     VpPage,
+    DayOfVp,
     LoginPage
   ],
   imports: [
@@ -33,6 +35,7 @@ import {IonicStorageModule} from '@ionic/storage';
     SpPage,
     DayOfSp,
     VpPage,
+    DayOfVp,
     LoginPage
   ],
   providers: [
