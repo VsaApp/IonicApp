@@ -1,7 +1,7 @@
-<ion-content padding>
+<ion-content (swipe)='swipe($event)' padding>
   <p class='vp-meta'>Vertretungsplan für <b>{{meta.weekday}}</b>, den <b>{{meta.date}}</b></p>
   <p class='vp-meta' id="vp-date">Zu letzt aktualisiert am <b>{{meta.update}}</b> um <b>{{meta.time}}</b></p>
-  <ion-list (swipe)='swipe($event)' id='vp-list'>
+  <ion-list id='vp-list'>
     <div *ngFor='let unit of objectKeys(items)' id='vp-unit-block'>
       <p id='vp-row-unit'>{{unit}}</p>
       <div>

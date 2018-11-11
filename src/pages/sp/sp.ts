@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
 
 import {strings} from '../../app/resources';
 import {DayOfSp} from './day/day';
@@ -16,7 +15,7 @@ export class SpPage {
   days: Array<string>;
   dayRoot = DayOfSp;
 
-  constructor(public navCtrl: NavController, public http: Http, public splashScreen: SplashScreen) {
+  constructor(public http: Http, public splashScreen: SplashScreen) {
     this.title = strings.sp;
     this.days = ['MO', 'DI', 'MI', 'DO', 'FR'];
     this.splashScreen.hide();
