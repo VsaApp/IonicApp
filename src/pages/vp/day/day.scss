@@ -9,15 +9,15 @@
 }
 
 .color-green {
-  border-left: 5px color($colors, primary) solid;
+  border-left: 2px color($colors, primary) solid;
 }
 
 .color-orange {
-  border-left: 5px color($colors, unknown) solid;
+  border-left: 2px color($colors, unknown) solid;
 }
 
 .color-red {
-  border-left: 5px color($colors, danger) solid;
+  border-left: 2px color($colors, danger) solid;
 }
 
 .label {
@@ -47,6 +47,10 @@
   color: color($colors, primary);
 }
 
+#vp-row-teacher {
+  color: color($colors, primary);
+}
+
 #vp-row .item-inner {
   background: none !important;
   padding-right: 0;
@@ -65,4 +69,8 @@
 .vp-meta {
   text-align: center;
   margin: 0 0 5px;
+}
+
+#vp-date {
+  margin-bottom: 15px;
 }
