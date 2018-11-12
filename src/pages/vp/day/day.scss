@@ -1,12 +1,3 @@
-#vp-list {
-  padding: 0;
-  margin: 0;
-}
-
-#vp-row {
-  padding: 0 0 0 5px;
-  margin-bottom: 10px;
-}
 
 .color-green {
   border-left: 2px color($colors, primary) solid;
@@ -26,44 +17,35 @@
 }
 
 #vp-row-block-item {
-  padding: 0;
   margin: 0;
-  display: grid;
-  grid-template-columns: 70% 15% 15%;
+  padding: 0;
 }
 
-#vp-row-block-item * {
-  padding: 0;
+#vp-row-block-item ion-col {
   margin: 0;
-  display: grid;
-  grid-template-rows: 50% 50%;
+  padding: 0;
 }
 
-#vp-row-block-right, #vp-row-block-center {
+#vp-row-lesson, #vp-row-teacher, #vp-row-room {
+  color: color($colors, primary);
+}
+
+#vp-row-teacher, #vp-row-changed-teacher, #vp-row-room, #vp-row-changed-room {
   text-align: right;
-}
-
-#vp-row-lesson {
-  color: color($colors, primary);
-}
-
-#vp-row-teacher {
-  color: color($colors, primary);
 }
 
 #vp-row .item-inner {
   background: none !important;
   padding-right: 0;
-}
-
-#vp-unit-block {
-  display: grid;
-  grid-template-columns: 10% 90%;
+  padding-left: 5px;
 }
 
 #vp-row-unit {
   margin-top: 5px;
   font-size: 20px;
+  margin-left: 0;
+  padding-left: 0;
+  padding-right: 15px;
 }
 
 .vp-meta {

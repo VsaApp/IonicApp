@@ -9,8 +9,8 @@ export class VpHolder {
 
   static load(http: Http, storage: Storage, callback: Function) {
     storage.get('grade').then(grade => {
-      this.loadDay('today', grade, http, (data1, error1) => {
-        this.loadDay('tomorrow', grade, http, (data2, error2) => {
+      this.loadDay('today', grade, http, storage,(data1, error1) => {
+        this.loadDay('tomorrow', grade, http, storage, (data2, error2) => {
           if (!error1 && !error2) VpHolder.vp = [data1, data2];
           callback(error1 || error2);
         });
@@ -22,15 +22,19 @@ export class VpHolder {
     return VpHolder.vp[day];
   }
 
-  private static loadDay(day: string, grade: any, http: Http, loaded: Function) {
+  private static loadDay(day: string, grade: any, http: Http, storage: Storage, loaded: Function) {
     let url = 'https://api.vsa.lohl1kohl.de/vp/' + day + '/' + grade + '.json';
 
     http.get(url).timeout(5000).map(res => res.json()).subscribe(data => {
       console.log('loaded day:  ', day);
       console.log(' loaded vp: ', data);
+      storage.set('vp-' + day + '-' + grade, data);
       loaded(data, false);
     }, error => {
-      loaded(error, true)
+      storage.get('vp-' + day + '-' + grade).then(savedVp => {
+        VpHolder.vp = savedVp;
+        loaded(error, true);
+      })
     });
   }
 }

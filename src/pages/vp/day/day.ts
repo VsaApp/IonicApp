@@ -28,11 +28,11 @@ export class DayOfVp {
       JSON.parse(JSON.stringify(VpHolder.getDay((this.today ? 0 : 1)).changes)).map((change: any) => {
         change.color = 'orange';
         change.lesson = change.lesson in nameOfSubjects ? nameOfSubjects[change.lesson] : change.lesson;
-        if (change.changed.room === '') {
-          change.room = '';
+        if (change.changed.room === change.room){
+          change.changed.room = '';
         }
-        if (change.changed.teacher === '') {
-          change.teacher = '';
+        if (change.changed.teacher === change.teacher){
+          change.changed.teacher = '';
         }
         if (change.changed.info === 'Freistunde') {
           change.color = 'green';

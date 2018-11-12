@@ -1,32 +1,29 @@
 <ion-content (swipe)='swipe($event)' padding>
   <p class='vp-meta'>Vertretungsplan für <b>{{meta.weekday}}</b>, den <b>{{meta.date}}</b></p>
   <p class='vp-meta' id="vp-date">Zu letzt aktualisiert am <b>{{meta.update}}</b> um <b>{{meta.time}}</b></p>
-  <ion-list id='vp-list'>
-    <div *ngFor='let unit of objectKeys(items)' id='vp-unit-block'>
-      <p id='vp-row-unit'>{{unit}}</p>
-      <div>
+  <ion-grid>
+    <ion-row *ngFor='let unit of objectKeys(items)' id='vp-unit-block'>
+      <ion-col col-1 id='vp-row-unit'>{{unit}}</ion-col>
+      <ion-col col-11>
         <button (click)='vpRowClicked($event, item)' *ngFor='let item of items[unit]'
                 [class.color-green]="item.color === 'green'" [class.color-orange]="item.color === 'orange'"
                 [class.color-red]="item.color === 'red'"
                 id='vp-row'
                 ion-item>
-          <div id='vp-row-block-item'>
-            <div id='vp-row-block-left'>
-              <b id='vp-row-lesson'>{{item.lesson}}</b>
-              <p id='vp-row-changed-info'>{{item.changed.info}}</p>
-            </div>
-            <div id='vp-row-block-center'>
-              <p id='vp-row-room'>{{item.room}}</p>
-              <p id='vp-row-changed-room'>{{item.changed.room}}</p>
-            </div>
-            <div id='vp-row-block-right'>
-              <p id='vp-row-teacher'>{{item.teacher}}</p>
-              <p id='vp-row-changed-teacher'>{{item.changed.teacher}}</p>
-            </div>
-          </div>
+          <ion-grid id='vp-row-block-item'>
+            <ion-row>
+              <ion-col col-8><b id='vp-row-lesson'>{{item.lesson}}</b></ion-col>
+              <ion-col col-2><p id='vp-row-room'>{{item.room}}</p></ion-col>
+              <ion-col col-2><p id='vp-row-teacher'>{{item.teacher}}</p></ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-8><p id='vp-row-changed-info'>{{item.changed.info}}</p></ion-col>
+              <ion-col col-2><p id='vp-row-changed-room'>{{item.changed.room}}</p></ion-col>
+              <ion-col col-2><p id='vp-row-changed-teacher'>{{item.changed.teacher}}</p></ion-col>
+            </ion-row>
+          </ion-grid>
         </button>
-      </div>
-    </div>
-  </ion-list>
-
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
