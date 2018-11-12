@@ -3,40 +3,49 @@
   margin: 0;
 }
 
+#sp-row ion-col{
+  padding: 0 0;
+  margin: 0 0;
+}
+
+#sp-row ion-grid {
+  padding: 0 0;
+  margin: 1px 0;
+  height: 100%;
+}
+
+#lunch-text {
+  width: 100%;
+  text-align: center;
+}
+
+#sp-row-block {
+  padding-left: 10px !important;
+}
+
+#lunch-row {
+  padding: auto 0 !important;
+  margin: auto 0 !important;
+}
+
+#col-unit, #lunch-row {
+  padding: auto 0 !important;
+  margin: auto 0 !important;
+}
+
 #sp-row {
   padding-left: 0;
   padding-right: 0;
 }
 
 #sp-row-unit {
-  padding-right: 1em;
-  float: left;
-  height: 100%;
   color: #000;
 }
 
 #sp-row-teacher {
-  text-align: right;
   color: #000;
-}
-
-#sp-row-room {
-  text-align: right;
 }
 
 #sp-row-lesson {
   color: color($colors, primary);
-}
-
-#sp-row-block-left {
-  float: left;
-  padding: 0;
-  margin: 0;
-}
-
-#sp-row-block-right {
-  float: right;
-  text-align: right;
-  padding: 0;
-  margin: 0;
 }

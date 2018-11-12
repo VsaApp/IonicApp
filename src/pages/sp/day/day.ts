@@ -11,7 +11,7 @@ import {SpHolder} from '../../../holder/Sp';
 
 export class DayOfSp {
   name: string;
-  items: Array<{ unit: number, lesson: string, teacher: string, time: string, room: string }>;
+  items: Array<{ unit: number, lesson: string, teacher: string, time: string, room: string, lunch: boolean }>;
   title: string;
 
   constructor(navParams: NavParams, public navCtrl: NavController) {
@@ -32,7 +32,8 @@ export class DayOfSp {
             lesson: longName,
             teacher: lesson.teacher,
             time: times[i],
-            room: lesson.room
+            room: lesson.room,
+            lunch: false
           });
         }
       }
@@ -42,7 +43,8 @@ export class DayOfSp {
           lesson: strings.lunch,
           teacher: '',
           time: '',
-          room: ''
+          room: '',
+          lunch: true
         })
       }
     }

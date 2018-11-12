@@ -1,18 +1,26 @@
 <ion-content (swipe)='swipe($event)' padding>
   <ion-list id='sp-list'>
-    <button (click)='spRowClicked($event, item)' *ngFor='let item of items' id='sp-row' id='sp-row' ion-item>
-      <p id='sp-row-unit' item-start>{{item.unit}}</p>
-      <div id=sp-row-block-item>
-        <div id='sp-row-block-left'>
-          <b id='sp-row-lesson'>{{item.lesson}}</b>
-          <p id='sp-row-time'>{{item.time}}</p>
-        </div>
-        <div id='sp-row-block-right'>
-          <p id='sp-row-teacher'>{{item.teacher}}</p>
-          <b id='sp-row-room'>{{item.room}}</b>
-        </div>
-      </div>
+    <button id='sp-row' (click)='spRowClicked($event, item)' *ngFor='let item of items' ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-1 id="col-unit"><p id='sp-row-unit' *ngIf="!item.lunch" item-start>{{item.unit}}</p></ion-col>
+          <ion-col id="sp-row-block" col-11>
+            <ion-grid>
+              <ion-row *ngIf="!item.lunch">
+                <ion-col col-10><b id='sp-row-lesson'>{{item.lesson}}</b></ion-col>
+                <ion-col col-2><p id='sp-row-teacher'>{{item.teacher}}</p></ion-col>
+              </ion-row>
+              <ion-row *ngIf="!item.lunch">
+                <ion-col col-10><p id='sp-row-time'>{{item.time}}</p></ion-col>
+                <ion-col col-2><b id='sp-row-room'>{{item.room}}</b></ion-col>
+              </ion-row>
+              <ion-row *ngIf="item.lunch" id="lunch-row">
+                <ion-col col-10><p id="lunch-text">{{item.lesson}}</p></ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </button>
   </ion-list>
-
 </ion-content>
