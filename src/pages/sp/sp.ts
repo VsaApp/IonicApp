@@ -15,10 +15,9 @@ export class SpPage {
   days: Array<string>;
   dayRoot = DayOfSp;
 
-  constructor(public http: Http, public splashScreen: SplashScreen) {
+  constructor(public http: Http) {
     this.title = strings.sp;
     this.days = ['MO', 'DI', 'MI', 'DO', 'FR'];
-    this.splashScreen.hide();
   }
 
   spRowClicked(event, item, day) {

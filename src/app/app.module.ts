@@ -16,6 +16,7 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {IonicStorageModule} from '@ionic/storage';
 import {LessonComponent} from '../components/lesson/lesson';
+import {LoadingPage} from "../pages/loading/loading";
 
 @NgModule({
   declarations: [
@@ -25,8 +26,9 @@ import {LessonComponent} from '../components/lesson/lesson';
     VpPage,
     DayOfVp,
     LoginPage,
+    LoadingPage,
     LessonComponent,
-    ChangeComponent,
+    ChangeComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,8 @@ import {LessonComponent} from '../components/lesson/lesson';
     DayOfSp,
     VpPage,
     DayOfVp,
-    LoginPage
+    LoginPage,
+    LoadingPage
   ],
   providers: [
     StatusBar,
