@@ -1,15 +1,11 @@
 import {Component, ViewChild} from '@angular/core';
 import {NavController} from 'ionic-angular';
-
-import {SpPage} from '../sp/sp';
 import {grades, strings} from '../../app/resources';
 import jsSHA from 'jssha';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/timeout';
 import 'rxjs/add/operator/map';
 import {Storage} from '@ionic/storage';
-import {VsaApp} from '../../app/app.component';
-import {SplashScreen} from '@ionic-native/splash-screen';
 import {LoadingPage} from "../loading/loading";
 
 @Component({

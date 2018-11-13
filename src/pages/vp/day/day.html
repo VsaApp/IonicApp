@@ -5,7 +5,7 @@
     <ion-row *ngFor='let unit of objectKeys(items)' id='vp-unit-block'>
       <ion-col col-1 id='vp-row-unit'>{{unit}}</ion-col>
       <ion-col col-11>
-        <change *ngFor='let item of items[unit]' [item]="item" (click)="vpRowClicked(item)"></change>
+        <change (click)="vpRowClicked(item)" *ngFor='let item of items[unit]' [item]="item"></change>
       </ion-col>
     </ion-row>
   </ion-grid>

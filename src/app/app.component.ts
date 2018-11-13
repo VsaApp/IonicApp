@@ -7,22 +7,18 @@ import {Storage} from '@ionic/storage';
 import {SpPage} from '../pages/sp/sp';
 import {VpPage} from '../pages/vp/vp';
 import {strings} from './resources';
-import {SpHolder} from '../holder/Sp';
 import {Http} from '@angular/http';
-import {VpHolder} from '../holder/Vp';
-import {LoginPage} from '../pages/login/login';
 import {LoadingPage} from "../pages/loading/loading";
 
 @Component({
   templateUrl: 'app.html'
 })
 export class VsaApp {
+  static loadOld: boolean;
   @ViewChild(Nav) nav: Nav;
-
   grade: string;
   rootPage: any;
   pages: Array<{ title: string, icon: string, component: any }>;
-  static loadOld: boolean;
 
   constructor(public platform: Platform, public toastCtrl: ToastController, public statusBar: StatusBar, public splashScreen: SplashScreen, public http: Http, public storage: Storage) {
     this.initializeApp();
@@ -39,8 +35,8 @@ export class VsaApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
-        this.rootPage = LoadingPage;
-        this.statusBar.styleDefault();
+      this.rootPage = LoadingPage;
+      this.statusBar.styleDefault();
     });
   }
 

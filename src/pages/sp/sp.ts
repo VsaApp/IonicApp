@@ -3,7 +3,6 @@ import {Component} from '@angular/core';
 import {strings} from '../../app/resources';
 import {DayOfSp} from './day/day';
 import {Http} from '@angular/http';
-import {SplashScreen} from '@ionic-native/splash-screen';
 
 @Component({
   selector: 'page-sp',
@@ -18,9 +17,5 @@ export class SpPage {
   constructor(public http: Http) {
     this.title = strings.sp;
     this.days = ['MO', 'DI', 'MI', 'DO', 'FR'];
-  }
-
-  spRowClicked(event, item, day) {
-    // That's right, we're pushing to ourselves!
   }
 }

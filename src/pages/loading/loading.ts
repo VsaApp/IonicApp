@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import {NavController, NavParams, Platform, ToastController} from 'ionic-angular';
+import {Component} from '@angular/core';
+import {NavController, ToastController} from 'ionic-angular';
 import {Http} from "@angular/http";
 import {SplashScreen} from "@ionic-native/splash-screen";
 import {SpHolder} from "../../holder/Sp";
@@ -25,7 +25,6 @@ export class LoadingPage {
     this.splashScreen.hide();
 
     // Load all data...
-    let loadOld = false;
     this.operation = this.loadOrder[0];
 
     this.login(() => {
@@ -68,13 +67,13 @@ export class LoadingPage {
     });
   }
 
-  nextLoaded(){
+  nextLoaded() {
     this.loaded++;
     this.operation = this.loadOrder[this.loaded] + '...';
     this.percent = this.loaded / this.toLoad * 100;
   }
 
-  finished(loadOld: boolean){
+  finished(loadOld: boolean) {
     this.percent = 100;
     if (loadOld) {
       let toast = this.toastCtrl.create({

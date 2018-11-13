@@ -9,7 +9,7 @@ export class VpHolder {
 
   public static load(http: Http, storage: Storage, callback: Function) {
     storage.get('grade').then(grade => {
-      this.loadDay('today', grade, http, storage,(data1, error1) => {
+      this.loadDay('today', grade, http, storage, (data1, error1) => {
         this.loadDay('tomorrow', grade, http, storage, (data2, error2) => {
           if (!error1 && !error2) VpHolder.vp = [data1, data2];
           callback(error1 || error2);
