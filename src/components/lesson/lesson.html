@@ -1,0 +1,25 @@
+<button (click.up)='lessonClicked($event, lesson)' id='sp-row' ion-item>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-1 id='col-unit'>
+        <p *ngIf='!lesson.lunch' id='sp-row-unit'
+           item-start>{{lesson.unit}}</p>
+      </ion-col>
+      <ion-col col-11 id='sp-row-block'>
+        <ion-grid>
+          <ion-row *ngIf='!lesson.lunch'>
+            <ion-col col-10><b id='sp-row-lesson'>{{lesson.lesson}}</b></ion-col>
+            <ion-col col-2><p id='sp-row-teacher'>{{lesson.teacher}}</p></ion-col>
+          </ion-row>
+          <ion-row *ngIf='!lesson.lunch'>
+            <ion-col col-10><p id='sp-row-time'>{{lesson.time}}</p></ion-col>
+            <ion-col col-2><b id='sp-row-room'>{{lesson.room}}</b></ion-col>
+          </ion-row>
+          <ion-row *ngIf='lesson.lunch' id='lunch-row'>
+            <ion-col col-10><p id='lunch-text'>{{lesson.lesson}}</p></ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</button>

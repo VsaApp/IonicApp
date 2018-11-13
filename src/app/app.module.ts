@@ -9,12 +9,13 @@ import {DayOfSp} from '../pages/sp/day/day';
 import {DayOfVp} from '../pages/vp/day/day';
 import {LoginPage} from '../pages/login/login';
 
-import {ChangeComponent} from "../components/change/change";
+import {ChangeComponent} from '../components/change/change';
 
 import {HttpModule} from '@angular/http';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {IonicStorageModule} from '@ionic/storage';
+import {LessonComponent} from '../components/lesson/lesson';
 
 @NgModule({
   declarations: [
@@ -23,8 +24,9 @@ import {IonicStorageModule} from '@ionic/storage';
     DayOfSp,
     VpPage,
     DayOfVp,
-    LoginPage
-    ChangeComponent
+    LoginPage,
+    LessonComponent,
+    ChangeComponent,
   ],
   imports: [
     BrowserModule,

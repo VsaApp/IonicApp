@@ -1,8 +1,11 @@
-import { NgModule } from '@angular/core';
-import { ChangeComponent } from './change/change';
+import {NgModule} from '@angular/core';
+import {ChangeComponent} from './change/change';
+import {LessonComponent} from './lesson/lesson';
+
 @NgModule({
-	declarations: [ChangeComponent],
-	imports: [],
-	exports: [ChangeComponent]
+  declarations: [LessonComponent, ChangeComponent],
+  imports: [],
+  exports: [LessonComponent, ChangeComponent]
 })
-export class ComponentsModule {}
+export class ComponentsModule {
+}

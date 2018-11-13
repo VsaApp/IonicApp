@@ -1,0 +1,49 @@
+#sp-row ion-col {
+  padding: 0 0;
+  margin: 0 0;
+}
+
+#sp-row ion-grid {
+  padding: 0 0;
+  margin: 1px 0;
+  height: 100%;
+}
+
+#lunch-text {
+  width: 100%;
+  text-align: center;
+}
+
+#sp-row-block {
+  padding-left: 10px !important;
+}
+
+#lunch-row {
+  padding: auto 0 !important;
+  margin: auto 0 !important;
+}
+
+#col-unit, #lunch-row {
+  padding: auto 0 !important;
+  margin: auto 0 !important;
+}
+
+#sp-row-unit {
+  color: #000;
+}
+
+#sp-row-teacher {
+  color: #000;
+}
+
+#sp-row-lesson {
+  color: color($colors, primary);
+}
+
+#sp-select-grid {
+  margin-left: 100px;
+}
+
+.grid {
+  margin: 0 !important;
+}

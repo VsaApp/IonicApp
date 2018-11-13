@@ -18,7 +18,7 @@ export class ChangeComponent {
   constructor() {
   }
 
-  changeCilcked(event, item){
+  changeClicked(event, item) {
     this.click.emit(item);
   }
 

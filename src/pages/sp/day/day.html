@@ -1,26 +1,17 @@
 <ion-content (swipe)='swipe($event)' padding>
   <ion-list id='sp-list'>
-    <button id='sp-row' (click)='spRowClicked($event, item)' *ngFor='let item of items' ion-item>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-1 id="col-unit"><p id='sp-row-unit' *ngIf="!item.lunch" item-start>{{item.unit}}</p></ion-col>
-          <ion-col id="sp-row-block" col-11>
-            <ion-grid>
-              <ion-row *ngIf="!item.lunch">
-                <ion-col col-10><b id='sp-row-lesson'>{{item.lesson}}</b></ion-col>
-                <ion-col col-2><p id='sp-row-teacher'>{{item.teacher}}</p></ion-col>
-              </ion-row>
-              <ion-row *ngIf="!item.lunch">
-                <ion-col col-10><p id='sp-row-time'>{{item.time}}</p></ion-col>
-                <ion-col col-2><b id='sp-row-room'>{{item.room}}</b></ion-col>
-              </ion-row>
-              <ion-row *ngIf="item.lunch" id="lunch-row">
-                <ion-col col-10><p id="lunch-text">{{item.lesson}}</p></ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </button>
+    <div *ngFor='let item of items; index as i'>
+      <lesson (click)='spRowClicked(i)' *ngIf='item.ready' [lesson]='item.lessons[item.selected]'
+              class='sp-row'>
+      </lesson>
+      <div style='margin-left: 10%;'>
+        <ng-container *ngFor='let lesson of item.lessons; index as j'>
+          <lesson (click)='spSelectRowClicked(i, j)' *ngIf='item.ready && item.showSelect && j !== item.selected'
+                  [lesson]='lesson'
+                  class='sp-select-row'>
+          </lesson>
+        </ng-container>
+      </div>
+    </div>
   </ion-list>
 </ion-content>
