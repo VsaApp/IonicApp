@@ -10,6 +10,7 @@ import 'rxjs/add/operator/map';
 import {Storage} from '@ionic/storage';
 import {VsaApp} from '../../app/app.component';
 import {SplashScreen} from '@ionic-native/splash-screen';
+import {LoadingPage} from "../loading/loading";
 
 @Component({
   selector: 'page-login',
@@ -27,9 +28,8 @@ export class LoginPage {
   grades: Array<string>;
   information = '';
 
-  constructor(public navCtrl: NavController, public http: Http, public splashScreen: SplashScreen, public storage: Storage) {
+  constructor(public navCtrl: NavController, public http: Http, public storage: Storage) {
     this.grades = grades;
-    this.splashScreen.hide();
   }
 
   static getHash(text: string) {
@@ -60,13 +60,10 @@ export class LoginPage {
         console.log('Login: ', data);
         if (data === 0) {
           this.wrong = false;
-          this.splashScreen.show();
           this.storage.set('username', hashName).then(() => {
             this.storage.set('password', hashPassword).then(() => {
               this.storage.set('grade', this.grade).then(() => {
-                VsaApp.loadAll(this.http, this.storage, (error): void => {
-                  this.navCtrl.setRoot(SpPage);
-                });
+                this.navCtrl.setRoot(LoadingPage);
               });
             });
           });

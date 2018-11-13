@@ -1,0 +1,21 @@
+page-loading {
+  padding-top: 100% !important;
+
+  #percent {
+    border-top: 5px #9d9d9d solid;
+    padding-top: 10px;
+  }
+
+  p {
+    width: 100%;
+    text-align: center;
+    padding-top: 0;
+    margin-top: 0;
+    color: #9d9d9d;
+  }
+
+  .fadeIn {
+    animation-name: fadeIn;
+    animation-duration: 1s;
+  }
+}

@@ -15,6 +15,7 @@ import {HttpModule} from '@angular/http';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {IonicStorageModule} from '@ionic/storage';
+import {LoadingPage} from "../pages/loading/loading";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {IonicStorageModule} from '@ionic/storage';
     DayOfSp,
     VpPage,
     DayOfVp,
-    LoginPage
+    LoginPage,
+    LoadingPage,
     ChangeComponent
   ],
   imports: [
@@ -39,7 +41,8 @@ import {IonicStorageModule} from '@ionic/storage';
     DayOfSp,
     VpPage,
     DayOfVp,
-    LoginPage
+    LoginPage,
+    LoadingPage
   ],
   providers: [
     StatusBar,
