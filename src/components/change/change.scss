@@ -1,0 +1,45 @@
+change {
+  .color-green {
+    border-left: 2px color($colors, primary) solid;
+  }
+
+  .color-orange {
+    border-left: 2px color($colors, unknown) solid;
+  }
+
+  .color-red {
+    border-left: 2px color($colors, danger) solid;
+  }
+
+  #vp-row-lesson, #vp-row-teacher, #vp-row-room {
+    color: color($colors, primary);
+  }
+
+  #vp-row-block-item {
+    margin: 0;
+    padding: 0;
+  }
+
+  #vp-row-block-item ion-col {
+    margin: 0;
+    padding: 0;
+  }
+
+  #vp-row-teacher, #vp-row-changed-teacher, #vp-row-room, #vp-row-changed-room {
+    text-align: right;
+  }
+
+  #vp-row .item-inner {
+    background: none !important;
+    padding-right: 0;
+    padding-left: 5px;
+  }
+
+  #vp-row-unit {
+    margin-top: 5px;
+    font-size: 20px;
+    margin-left: 0;
+    padding-left: 0;
+    padding-right: 15px;
+  }
+}

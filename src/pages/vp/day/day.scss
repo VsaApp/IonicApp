@@ -1,62 +1,25 @@
+page-vp{
+  .label {
+    margin: 5px;
+    padding: 0;
+  }
 
-.color-green {
-  border-left: 2px color($colors, primary) solid;
+  .vp-meta {
+    text-align: center;
+    margin: 0 0 5px;
+  }
+
+  .content-ios * .vp-meta {
+    margin-top: 10px;
+  }
+
+  #vp-date {
+    margin-bottom: 15px;
+  }
+
+  #vp-row {
+    margin-bottom: 5px;
+  }
 }
 
-.color-orange {
-  border-left: 2px color($colors, unknown) solid;
-}
 
-.color-red {
-  border-left: 2px color($colors, danger) solid;
-}
-
-.label {
-  margin: 5px;
-  padding: 0;
-}
-
-#vp-row-block-item {
-  margin: 0;
-  padding: 0;
-}
-
-#vp-row-block-item ion-col {
-  margin: 0;
-  padding: 0;
-}
-
-#vp-row-lesson, #vp-row-teacher, #vp-row-room {
-  color: color($colors, primary);
-}
-
-#vp-row-teacher, #vp-row-changed-teacher, #vp-row-room, #vp-row-changed-room {
-  text-align: right;
-}
-
-#vp-row .item-inner {
-  background: none !important;
-  padding-right: 0;
-  padding-left: 5px;
-}
-
-#vp-row-unit {
-  margin-top: 5px;
-  font-size: 20px;
-  margin-left: 0;
-  padding-left: 0;
-  padding-right: 15px;
-}
-
-.vp-meta {
-  text-align: center;
-  margin: 0 0 5px;
-}
-
-.content-ios * .vp-meta {
-  margin-top: 10px;
-}
-
-#vp-date {
-  margin-bottom: 15px;
-}

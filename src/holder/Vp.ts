@@ -7,7 +7,7 @@ export class VpHolder {
 
   public static vp: Array<{ date: string, time: string, update: string, weekday: string, changes: [{ grade: string, unit: number, lesson: string, type: string, room: string, teacher: string, changed: { info: string, teacher: string, room: string } }] }>;
 
-  static load(http: Http, storage: Storage, callback: Function) {
+  public static load(http: Http, storage: Storage, callback: Function) {
     storage.get('grade').then(grade => {
       this.loadDay('today', grade, http, storage,(data1, error1) => {
         this.loadDay('tomorrow', grade, http, storage, (data2, error2) => {
@@ -18,7 +18,7 @@ export class VpHolder {
     });
   }
 
-  static getDay(day: number) {
+  public static getDay(day: number) {
     return VpHolder.vp[day];
   }
 

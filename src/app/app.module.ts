@@ -9,6 +9,8 @@ import {DayOfSp} from '../pages/sp/day/day';
 import {DayOfVp} from '../pages/vp/day/day';
 import {LoginPage} from '../pages/login/login';
 
+import {ChangeComponent} from "../components/change/change";
+
 import {HttpModule} from '@angular/http';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
@@ -22,6 +24,7 @@ import {IonicStorageModule} from '@ionic/storage';
     VpPage,
     DayOfVp,
     LoginPage
+    ChangeComponent
   ],
   imports: [
     BrowserModule,

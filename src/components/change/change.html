@@ -1,0 +1,18 @@
+<button (click)='changeCilcked($event, item)'
+        [class.color-green]="item.color === 'green'" [class.color-orange]="item.color === 'orange'"
+        [class.color-red]="item.color === 'red'"
+        id='vp-row'
+        ion-item>
+  <ion-grid id='vp-row-block-item'>
+    <ion-row>
+      <ion-col col-8><b id='vp-row-lesson'>{{item.lesson}}</b></ion-col>
+      <ion-col col-2><p id='vp-row-room'>{{item.room}}</p></ion-col>
+      <ion-col col-2><p id='vp-row-teacher'>{{item.teacher}}</p></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-8><p id='vp-row-changed-info'>{{item.changed.info}}</p></ion-col>
+      <ion-col col-2><p id='vp-row-changed-room'>{{item.changed.room}}</p></ion-col>
+      <ion-col col-2><p id='vp-row-changed-teacher'>{{item.changed.teacher}}</p></ion-col>
+    </ion-row>
+  </ion-grid>
+</button>

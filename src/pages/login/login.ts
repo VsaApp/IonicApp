@@ -64,7 +64,7 @@ export class LoginPage {
           this.storage.set('username', hashName).then(() => {
             this.storage.set('password', hashPassword).then(() => {
               this.storage.set('grade', this.grade).then(() => {
-                VsaApp.loadAll(this.http, this.storage, (): void => {
+                VsaApp.loadAll(this.http, this.storage, (error): void => {
                   this.navCtrl.setRoot(SpPage);
                 });
               });

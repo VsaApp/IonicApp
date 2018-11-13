@@ -54,7 +54,7 @@ export class DayOfVp {
     }
   }
 
-  vpRowClicked(event, item) {
+  vpRowClicked(item) {
     // That's right, we're pushing to ourselves!
   }
 

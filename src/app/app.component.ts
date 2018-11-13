@@ -21,6 +21,7 @@ export class VsaApp {
   grade: string;
   rootPage: any;
   pages: Array<{ title: string, icon: string, component: any }>;
+  static loadOld: boolean;
 
   constructor(public platform: Platform, public toastCtrl: ToastController, public statusBar: StatusBar, public splashScreen: SplashScreen, public http: Http, public storage: Storage) {
     this.initializeApp();
@@ -33,18 +34,13 @@ export class VsaApp {
   }
 
   static loadAll(http: Http, storage: Storage, finished: Function) {
+    VsaApp.loadOld = false;
     // Fist load sp...
     SpHolder.load(http, storage, (error): void => {
-      if (error) {
-        finished(false);
-        return;
-      }
+      VsaApp.loadOld = VsaApp.loadOld || error;
       VpHolder.load(http, storage, (error): void => {
-        if (error) {
-          finished(false);
-          return;
-        }
-        finished();
+        VsaApp.loadOld = VsaApp.loadOld || error;
+        finished(VsaApp.loadOld);
       })
     });
   }
