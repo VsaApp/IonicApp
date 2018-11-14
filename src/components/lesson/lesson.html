@@ -2,8 +2,9 @@
   <ion-grid>
     <ion-row>
       <ion-col col-1 id='col-unit'>
-        <p *ngIf='!lesson.lunch' id='sp-row-unit'
+        <p *ngIf='!lesson.lunch && !subitem' id='sp-row-unit'
            item-start>{{lesson.unit}}</p>
+        <p *ngIf='!lesson.lunch && subitem' id='sp-row-point'>-</p>
       </ion-col>
       <ion-col col-11 id='sp-row-block'>
         <ion-grid>

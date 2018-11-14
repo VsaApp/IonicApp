@@ -24,7 +24,7 @@ export class VsaApp {
     this.initializeApp();
 
     const interval = setInterval(() => {
-      if (this.translate.instant('sp') === require('../assets/i18n/de.json').sp) {
+      if (this.translate.instant('sp') !== 'sp') {
         clearInterval(interval);
         this.pages = [
           {title: this.translate.instant('sp'), icon: 'clipboard', component: SpPage},

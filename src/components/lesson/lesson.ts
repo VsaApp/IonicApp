@@ -7,6 +7,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 export class LessonComponent {
 
   @Input('lesson') lesson: any;
+  @Input('subitem') subitem = false;
   @Output('click') click = new EventEmitter();
 
   constructor() {

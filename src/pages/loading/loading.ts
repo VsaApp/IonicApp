@@ -26,7 +26,7 @@ export class LoadingPage {
 
   constructor(public translate: TranslateService, public navCtrl: NavController, public toastCtrl: ToastController, public http: Http, public splashScreen: SplashScreen, public storage: Storage) {
     const interval = setInterval(() => {
-      if (this.translate.instant('sp') === require('../../assets/i18n/de.json').sp) {
+      if (this.translate.instant('sp') !== 'sp') {
         clearInterval(interval);
         this.splashScreen.hide();
 

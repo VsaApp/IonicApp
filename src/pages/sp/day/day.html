@@ -4,11 +4,17 @@
       <lesson (click)='spRowClicked(i)' *ngIf='item.ready' [lesson]='item.lessons[item.selected]'
               class='sp-row'>
       </lesson>
-      <div style='margin-left: 10%;'>
+      <div class='section'
+           [class.collapsed]='!(item.ready && item.showSelect && j !== item.selected)'
+           [class.collapsible]='item.ready && item.showSelect && j !== item.selected'
+           style='margin-left: 10%;'
+            *ngIf='item.lessons[0].unit !== 6'>
         <ng-container *ngFor='let lesson of item.lessons; index as j'>
-          <lesson (click)='spSelectRowClicked(i, j)' *ngIf='item.ready && item.showSelect && j !== item.selected'
+          <lesson (click)='spSelectRowClicked(i, j)'
                   [lesson]='lesson'
-                  class='sp-select-row'>
+                  [subitem]="true"
+                  class='sp-select-row'
+                  *ngIf='item.ready && item.showSelect && j !== item.selected'>
           </lesson>
         </ng-container>
       </div>

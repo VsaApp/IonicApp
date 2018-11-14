@@ -11,3 +11,14 @@
 .sp-select-row {
   margin: 0;
 }
+
+.section {
+  overflow:hidden;
+  transition:max-height 0.3s ease-out;
+  height:auto;
+  max-height: 1000px;
+}
+
+.section.collapsed {
+  max-height:0;
+}
