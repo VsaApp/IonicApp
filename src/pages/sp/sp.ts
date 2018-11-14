@@ -1,8 +1,7 @@
 import {Component} from '@angular/core';
-
-import {strings} from '../../app/resources';
 import {DayOfSp} from './day/day';
 import {Http} from '@angular/http';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'page-sp',
@@ -14,8 +13,8 @@ export class SpPage {
   days: Array<string>;
   dayRoot = DayOfSp;
 
-  constructor(public http: Http) {
-    this.title = strings.sp;
+  constructor(public translate: TranslateService, public http: Http) {
+    this.title = this.translate.instant('sp');
     this.days = ['MO', 'DI', 'MI', 'DO', 'FR'];
   }
 }

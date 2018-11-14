@@ -1,0 +1,23 @@
+{
+  "loading_login": "Login",
+  "loading_sp": "Stundenplan",
+  "loading_vp": "Vertretungsplan",
+  "loading_app": "App",
+  "connection_offline": "Es konnte keine Verbindung hergestellt werden",
+  "login_grade": "Klasse/Stufe",
+  "login_username": "Benutzername",
+  "login_password": "Passwort",
+  "login_submit": "Login",
+  "login_wrong_values": "Benutzername oder Password ist falsch",
+  "login_grade_not_set": "Keine Klasse gesetzt",
+  "sp": "Stundenplan",
+  "vp": "Vertretungsplan",
+  "free_lesson": "Freistunde",
+  "lunch_break": "Mittagspause",
+  "exam": "Klausur",
+  "make_up": "Nachschreiber",
+  "vp_vp_for": "Vertretungsplan für ",
+  "vp_the": ", den ",
+  "vp_last_updated_at": "Zu letzt aktualisiert am ",
+  "vp_at": " um "
+}

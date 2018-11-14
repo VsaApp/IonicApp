@@ -1,14 +1,3 @@
-export const strings = {
-  sp: 'Stundenplan',
-  vp: 'Vertretungsplan',
-  menu: 'Menü',
-  lessonFree: 'Freistunde',
-  lunch: 'Mittagspause',
-  wrongValues: 'Benutzername oder Password ist falsch',
-  noConnection: 'Verbindung zum Server fehlgeschlagen',
-  noGradeSet: 'Keine Klasse gesetzt'
-};
-
 export const times = [
   '08:00 - 09:00',
   '09:10 - 10:10',

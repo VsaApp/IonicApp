@@ -2,19 +2,20 @@
   <img id='image' src='../../assets/imgs/logo.png'/>
   <p id='title'>VsaApp</p>
   <ion-item color='transparent'>
-    <ion-label>Klasse</ion-label>
+    <ion-label>{{'login_grade' | translate}}</ion-label>
     <ion-select [(ngModel)]='grade' color='transparent' id='grade-select'>
       <ion-option *ngFor='let grade of grades' [value]='grade' id='grade-option'>{{grade}}</ion-option>
     </ion-select>
   </ion-item>
   <ion-item>
     <ion-input (keyup.enter)='this.passwordInput.setFocus()' [(ngModel)]='username'
-               placeholder='Benutzername'></ion-input>
+               placeholder="{{'login_username' | translate}}"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input #passwordInput (keyup.enter)='this.login()' [(ngModel)]='password' placeholder='Passwort'
+    <ion-input #passwordInput (keyup.enter)='this.login()' [(ngModel)]='password'
+               placeholder="{{'login_password' | translate}}"
                type='password'></ion-input>
   </ion-item>
   <p *ngIf='wrong' id='wrongValues'>{{information}}</p>
-  <button (click)='login()' id='login-button'>Login</button>
+  <button (click)='login()' id='login-button'>{{'login_submit' | translate}}</button>
 </ion-content>

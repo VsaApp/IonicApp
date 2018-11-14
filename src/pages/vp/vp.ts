@@ -1,8 +1,7 @@
 import {Component} from '@angular/core';
-
-import {strings} from '../../app/resources';
 import {DayOfVp} from './day/day';
-import {VpHolder} from "../../holder/Vp";
+import {VpHolder} from '../../holder/Vp';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'page-vp',
@@ -15,15 +14,11 @@ export class VpPage {
   titleTomorrow: string;
   dayRoot = DayOfVp;
 
-  constructor() {
-    this.title = strings.vp;
+  constructor(public translate: TranslateService) {
+    this.title = this.translate.instant('vp');
     if (VpHolder.vp !== null) {
       this.titleToday = VpHolder.getDay(0).weekday;
       this.titleTomorrow = VpHolder.getDay(1).weekday;
     }
-  }
-
-  vpRowClicked(event, item, day) {
-    // That's right, we're pushing to ourselves!
   }
 }

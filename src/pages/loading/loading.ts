@@ -7,7 +7,7 @@ import {VpHolder} from "../../holder/Vp";
 import {Storage} from "@ionic/storage";
 import {LoginPage} from "../login/login";
 import {SpPage} from "../sp/sp";
-import {strings} from "../../app/resources";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'page-loading',
@@ -20,27 +20,32 @@ export class LoadingPage {
   public operation: string;
   private toLoad = 3;
   private loaded = 0;
-  private loadOrder = ['Login', 'Stundenplan', 'Vertretungsplan', 'start app'];
-  private timer: any;
-  private isAnimating = false;
+  private loadOrder;
 
-  constructor(public navCtrl: NavController, public toastCtrl: ToastController, public http: Http, public splashScreen: SplashScreen, public storage: Storage) {
-    this.splashScreen.hide();
+  constructor(public translate: TranslateService, public navCtrl: NavController, public toastCtrl: ToastController, public http: Http, public splashScreen: SplashScreen, public storage: Storage) {
+    const interval = setInterval(() => {
+      if (this.translate.instant('sp') === require('../../assets/i18n/de.json').sp) {
+        clearInterval(interval);
+        this.splashScreen.hide();
 
-    // Load all data...
-    this.operation = this.loadOrder[0];
-    this.progressAnimation();
+        this.loadOrder = [this.translate.instant('loading_login'), this.translate.instant('loading_sp'), this.translate.instant('loading_vp'), this.translate.instant('loading_app')];
 
-    this.login(() => {
-      this.nextLoaded();
-      SpHolder.load(http, storage, (error1): void => {
-        this.nextLoaded();
-        VpHolder.load(http, storage, (error2): void => {
+        // Load all data...
+        this.operation = this.loadOrder[0];
+        this.progressAnimation();
+
+        this.login(() => {
           this.nextLoaded();
-          this.finished(error1 || error2);
-        })
-      });
-    });
+          SpHolder.load(http, storage, (error1): void => {
+            this.nextLoaded();
+            VpHolder.load(http, storage, (error2): void => {
+              this.nextLoaded();
+              this.finished(error1 || error2);
+            });
+          });
+        });
+      }
+    }, 10);
   }
 
   login(callback: Function) {
@@ -80,7 +85,7 @@ export class LoadingPage {
   finished(loadOld: boolean) {
     if (loadOld) {
       let toast = this.toastCtrl.create({
-        message: strings.noConnection,
+        message: this.translate.instant('connection_offline'),
         duration: 3000,
         position: 'bottom'
       });
@@ -89,8 +94,8 @@ export class LoadingPage {
     this.navCtrl.setRoot(SpPage);
   }
 
-  progressAnimation(){
-    this.timer = setTimeout(x => {
+  progressAnimation() {
+    setTimeout(() => {
       if (this.percent < this.targetPercent) {
         this.percent += 5;
         if (this.percent > this.targetPercent) this.percent = this.targetPercent;

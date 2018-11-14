@@ -1,12 +1,13 @@
 import {Component, ViewChild} from '@angular/core';
 import {NavController} from 'ionic-angular';
-import {grades, strings} from '../../app/resources';
+import {grades} from '../../app/resources';
 import jsSHA from 'jssha';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/timeout';
 import 'rxjs/add/operator/map';
 import {Storage} from '@ionic/storage';
-import {LoadingPage} from "../loading/loading";
+import {LoadingPage} from '../loading/loading';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'page-login',
@@ -24,7 +25,7 @@ export class LoginPage {
   grades: Array<string>;
   information = '';
 
-  constructor(public navCtrl: NavController, public http: Http, public storage: Storage) {
+  constructor(public translate: TranslateService, public navCtrl: NavController, public http: Http, public storage: Storage) {
     this.grades = grades;
   }
 
@@ -37,10 +38,10 @@ export class LoginPage {
   login() {
     if (this.grade === '') {
       this.wrong = true;
-      this.information = strings.noGradeSet;
+      this.information = this.translate.instant('login_grade_not_set');
       return;
     }
-    if (this.information === strings.noGradeSet) {
+    if (this.information === this.translate.instant('login_grade_not_set')) {
       this.wrong = false;
       this.information = '';
     }
@@ -66,11 +67,11 @@ export class LoginPage {
         } else {
           this.wrong = true;
           this.password = '';
-          this.information = strings.wrongValues;
+          this.information = this.translate.instant('login_wrong_values');
         }
       }, () => {
         this.wrong = true;
-        this.information = strings.noConnection;
+      this.information = this.translate.instant('connection_offline');
       }
     );
   }

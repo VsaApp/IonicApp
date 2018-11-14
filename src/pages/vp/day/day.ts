@@ -1,8 +1,9 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 
-import {nameOfSubjects, strings} from '../../../app/resources';
+import {nameOfSubjects} from '../../../app/resources';
 import {VpHolder} from '../../../holder/Vp';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'vp-day',
@@ -16,8 +17,8 @@ export class DayOfVp {
   title: string;
   objectKeys = Object.keys;
 
-  constructor(navParams: NavParams, public navCtrl: NavController) {
-    this.title = strings.vp;
+  constructor(navParams: NavParams, public translate: TranslateService, public navCtrl: NavController) {
+    this.title = this.translate.instant('vp');
     this.today = navParams.data.today;
     console.log('Passed params', this.today);
 
@@ -34,15 +35,15 @@ export class DayOfVp {
         if (change.changed.teacher === change.teacher) {
           change.changed.teacher = '';
         }
-        if (change.changed.info === 'Freistunde') {
+        if (change.changed.info === this.translate.instant('free_lesson')) {
           change.color = 'green';
         }
-        if (change.changed.info.includes('Klausur')) {
+        if (change.changed.info.includes(this.translate.instant('exam'))) {
           change.color = 'red';
         }
-        if (change.changed.info.includes('Nachschreiber')) {
-          change.lesson = 'Klausur';
-          change.changed.info = change.changed.info.replace('Klausur', '').trim();
+        if (change.changed.info.includes(this.translate.instant('make_up'))) {
+          change.lesson = this.translate.instant('exam');
+          change.changed.info = change.changed.info.replace(this.translate.instant('exam'), '').trim();
         }
         return change;
       }).forEach(item => {

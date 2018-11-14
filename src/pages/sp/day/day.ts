@@ -1,9 +1,10 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 
-import {nameOfSubjects, strings, times} from '../../../app/resources';
+import {nameOfSubjects, times} from '../../../app/resources';
 import {SpHolder} from '../../../holder/Sp';
-import {Storage} from "@ionic/storage";
+import {Storage} from '@ionic/storage';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'sp-day',
@@ -15,8 +16,8 @@ export class DayOfSp {
   items: Array<{ ready: boolean, showSelect: boolean, lessons: Array<{ unit: number, lesson: string, teacher: string, time: string, room: string, lunch: boolean }>, selected: number }>;
   title: string;
 
-  constructor(navParams: NavParams, public storage: Storage, public navCtrl: NavController) {
-    this.title = strings.sp;
+  constructor(navParams: NavParams, public translate: TranslateService, public storage: Storage, public navCtrl: NavController) {
+    this.title = this.translate.instant('sp');
     this.name = navParams.data.name;
     console.log('Passed params', this.name);
     this.setup();
@@ -66,7 +67,7 @@ export class DayOfSp {
           if ((await this.storage.get('grade') === 'EF') || (await this.storage.get('grade') === 'Q1') || (await this.storage.get('grade') === 'Q2')) {
             this.items[i].lessons.push({
               unit: i + 1,
-              lesson: strings.lessonFree,
+              lesson: this.translate.instant('free_lesson'),
               teacher: '',
               time: times[i],
               room: '',
@@ -80,7 +81,7 @@ export class DayOfSp {
         this.items.splice(5, 0, {
           lessons: [{
             unit: 6,
-            lesson: strings.lunch,
+            lesson: this.translate.instant('lunch_break'),
             teacher: '',
             time: '',
             room: '',
