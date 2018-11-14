@@ -16,16 +16,20 @@ import {strings} from "../../app/resources";
 export class LoadingPage {
 
   public percent = 0;
+  public targetPercent = 0;
   public operation: string;
   private toLoad = 3;
   private loaded = 0;
   private loadOrder = ['Login', 'Stundenplan', 'Vertretungsplan', 'start app'];
+  private timer: any;
+  private isAnimating = false;
 
   constructor(public navCtrl: NavController, public toastCtrl: ToastController, public http: Http, public splashScreen: SplashScreen, public storage: Storage) {
     this.splashScreen.hide();
 
     // Load all data...
     this.operation = this.loadOrder[0];
+    this.progressAnimation();
 
     this.login(() => {
       this.nextLoaded();
@@ -70,11 +74,10 @@ export class LoadingPage {
   nextLoaded() {
     this.loaded++;
     this.operation = this.loadOrder[this.loaded] + '...';
-    this.percent = this.loaded / this.toLoad * 100;
+    this.targetPercent = (this.loaded + 1) / this.toLoad * 100;
   }
 
   finished(loadOld: boolean) {
-    this.percent = 100;
     if (loadOld) {
       let toast = this.toastCtrl.create({
         message: strings.noConnection,
@@ -86,4 +89,13 @@ export class LoadingPage {
     this.navCtrl.setRoot(SpPage);
   }
 
+  progressAnimation(){
+    this.timer = setTimeout(x => {
+      if (this.percent < this.targetPercent) {
+        this.percent += 5;
+        if (this.percent > this.targetPercent) this.percent = this.targetPercent;
+      }
+      this.progressAnimation();
+    }, 40);
+  }
 }

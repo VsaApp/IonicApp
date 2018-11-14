@@ -2,7 +2,7 @@ page-loading {
   padding-top: 100% !important;
 
   #percent {
-    border-top: 5px #9d9d9d solid;
+    border-top: 5px color($colors, primary) solid;
     padding-top: 10px;
   }
 
