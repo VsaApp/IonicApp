@@ -21,6 +21,8 @@ export class LoadingPage {
   private toLoad = 3;
   private loaded = 0;
   private loadOrder;
+  private error1: boolean;
+  private error2: boolean;
 
   constructor(public translate: TranslateService, public navCtrl: NavController, public toastCtrl: ToastController, public http: Http, public splashScreen: SplashScreen, public storage: Storage) {
     const interval = setInterval(() => {
@@ -40,7 +42,8 @@ export class LoadingPage {
             this.nextLoaded();
             VpHolder.load(http, storage, (error2): void => {
               this.nextLoaded();
-              this.finished(error1 || error2);
+              this.error1 = error1;
+              this.error2 = error2;
             });
           });
         });
@@ -95,12 +98,14 @@ export class LoadingPage {
   }
 
   progressAnimation() {
-    setTimeout(() => {
+    setInterval(() => {
       if (this.percent < this.targetPercent) {
         this.percent += 5;
         if (this.percent > this.targetPercent) this.percent = this.targetPercent;
+        if (this.percent === this.targetPercent) {
+          this.finished(this.error1 || this.error2);
+        }
       }
-      this.progressAnimation();
-    }, 40);
+    }, 25);
   }
 }
