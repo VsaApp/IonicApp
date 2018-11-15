@@ -13,7 +13,7 @@ import {TranslateService} from '@ngx-translate/core';
 
 export class DayOfSp {
   name: string;
-  items: Array<{ ready: boolean, showSelect: boolean, lessons: Array<{ unit: number, lesson: string, teacher: string, time: string, room: string, lunch: boolean }>, selected: number }>;
+  items: Array<{ ready: boolean, showSelect: boolean, isExpanded: boolean, lessons: Array<{ unit: number, lesson: string, teacher: string, time: string, room: string, lunch: boolean }>, selected: number }>;
   title: string;
 
   constructor(navParams: NavParams, public translate: TranslateService, public storage: Storage, public navCtrl: NavController) {
@@ -30,7 +30,8 @@ export class DayOfSp {
         lessons: [{unit: 0, lesson: '', teacher: '', time: '', room: '', lunch: false}],
         selected: 0,
         ready: false,
-        showSelect: false
+        showSelect: false,
+        isExpanded: false
       });
     }
 
@@ -89,7 +90,8 @@ export class DayOfSp {
           }],
           selected: 0,
           ready: false,
-          showSelect: false
+          showSelect: false,
+          isExpanded: false
         });
       }
       this.items = this.items.map(items => {
@@ -101,21 +103,35 @@ export class DayOfSp {
 
   spRowClicked(unit) {
     if (this.items[unit].showSelect) {
-      this.items[unit].showSelect = false;
+      this.deactivateSelection(this.items[unit]);
     } else {
       this.items = this.items.map(a => {
-        a.showSelect = false;
+        if (a.showSelect) this.deactivateSelection(a);
         return a;
       });
-      this.items[unit].showSelect = true;
+      this.activateSelection(this.items[unit]);
     }
+  }
+
+  activateSelection(unit: any){
+    unit.showSelect = true;
+    setTimeout(() => {
+      unit.isExpanded = true;
+    }, 30);
+  }
+
+  deactivateSelection(unit: any){
+    unit.isExpanded = false;
+    setTimeout(() => {
+      unit.showSelect = false;
+    }, 300);
   }
 
   async spSelectRowClicked(unit, i) {
     this.items[unit].selected = i;
     let weekday = ['MO', 'DI', 'MI', 'DO', 'FR'].indexOf(this.name);
     this.storage.set('sp-' + (await this.storage.get('grade')) + '-' + weekday + '-' + unit, i).then(() => {
-      this.items[unit].showSelect = false;
+      this.deactivateSelection(this.items[unit]);
     });
   }
 

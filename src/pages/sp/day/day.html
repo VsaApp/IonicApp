@@ -5,15 +5,16 @@
               class='sp-row'>
       </lesson>
       <div class='section'
-           [class.collapsed]='!(item.ready && item.showSelect && j !== item.selected)'
-           [class.collapsible]='item.ready && item.showSelect && j !== item.selected'
+           [class.collapsed]='!(item.ready && item.isExpanded)'
+           [class.collapsible]='item.ready && item.isExpanded'
            style='margin-left: 10%;'
             *ngIf='item.lessons[0].unit !== 6'>
         <ng-container *ngFor='let lesson of item.lessons; index as j'>
           <lesson (click)='spSelectRowClicked(i, j)'
                   [lesson]='lesson'
                   [subitem]="true"
-                  class='sp-select-row'>
+                  class='sp-select-row'
+                  *ngIf='item.ready && item.showSelect && j !== item.selected'>
           </lesson>
         </ng-container>
       </div>
