@@ -2,12 +2,12 @@ import {Component, ViewChild} from '@angular/core';
 import {Nav, Platform} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {Storage} from '@ionic/storage';
+import {TranslateService} from '@ngx-translate/core';
 
 import {SpPage} from '../pages/sp/sp';
 import {VpPage} from '../pages/vp/vp';
 import {Http} from '@angular/http';
-import {LoadingPage} from "../pages/loading/loading";
-import {TranslateService} from "@ngx-translate/core";
+import {LoadingPage} from '../pages/loading/loading';
 
 @Component({
   templateUrl: 'app.html'
@@ -37,7 +37,11 @@ export class VsaApp {
   initializeApp() {
     this.platform.ready().then(() => {
       this.rootPage = LoadingPage;
-      this.statusBar.styleDefault();
+      if (this.platform.is('android')) {
+        this.statusBar.backgroundColorByHexString('#67a744');
+      } else {
+        this.statusBar.styleLightContent();
+      }
     });
   }
 

@@ -20,6 +20,7 @@ import {LoadingPage} from '../pages/loading/loading';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {HeaderColor} from '@ionic-native/header-color';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
   providers: [
     StatusBar,
     SplashScreen,
+    HeaderColor,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

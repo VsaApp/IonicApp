@@ -8,6 +8,7 @@ import {Storage} from "@ionic/storage";
 import {LoginPage} from "../login/login";
 import {SpPage} from "../sp/sp";
 import {TranslateService} from "@ngx-translate/core";
+import {HeaderColor} from "@ionic-native/header-color";
 
 @Component({
   selector: 'page-loading',
@@ -24,7 +25,8 @@ export class LoadingPage {
   private error1: boolean;
   private error2: boolean;
 
-  constructor(public translate: TranslateService, public navCtrl: NavController, public toastCtrl: ToastController, public http: Http, public splashScreen: SplashScreen, public storage: Storage) {
+  constructor(private headerColor: HeaderColor, public translate: TranslateService, public navCtrl: NavController, public toastCtrl: ToastController, public http: Http, public splashScreen: SplashScreen, public storage: Storage) {
+    this.headerColor.tint('#67a744').then(console.log).catch(console.error);
     const interval = setInterval(() => {
       if (this.translate.instant('sp') !== 'sp') {
         clearInterval(interval);
