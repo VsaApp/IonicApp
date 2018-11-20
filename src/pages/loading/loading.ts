@@ -1,14 +1,15 @@
 import {Component} from '@angular/core';
 import {NavController, ToastController} from 'ionic-angular';
-import {Http} from "@angular/http";
-import {SplashScreen} from "@ionic-native/splash-screen";
-import {SpHolder} from "../../holder/Sp";
-import {VpHolder} from "../../holder/Vp";
-import {Storage} from "@ionic/storage";
-import {LoginPage} from "../login/login";
-import {SpPage} from "../sp/sp";
-import {TranslateService} from "@ngx-translate/core";
-import {HeaderColor} from "@ionic-native/header-color";
+import {Http} from '@angular/http';
+import {SplashScreen} from '@ionic-native/splash-screen';
+import {SpHolder} from '../../holder/Sp';
+import {VpHolder} from '../../holder/Vp';
+import {Storage} from '@ionic/storage';
+import {LoginPage} from '../login/login';
+import {SpPage} from '../sp/sp';
+import {TranslateService} from '@ngx-translate/core';
+import {HeaderColor} from '@ionic-native/header-color';
+import crypto from 'crypto';
 
 @Component({
   selector: 'page-loading',
@@ -61,7 +62,7 @@ export class LoadingPage {
         this.storage.get('username').then(username => {
           this.storage.get('password').then(password => {
             // Control saved login data...
-            let url = 'https://api.vsa.lohl1kohl.de/validate?username=' + username + '&password=' + password;
+            let url = 'https://api.vsa.lohl1kohl.de/validate?username=' + username + '&password=' + password + '&v=' + crypto.randomBytes(8).toString('hex');
             this.http.get(url).timeout(5000).map(res => res.json()).subscribe((data) => {
               console.log('Login: ', data);
               if (data == '0') {

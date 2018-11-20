@@ -2,6 +2,7 @@ import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/timeout';
 import {Storage} from '@ionic/storage';
+import crypto from 'crypto';
 
 export class VpHolder {
 
@@ -12,18 +13,15 @@ export class VpHolder {
       this.loadDay('today', grade, http, storage, (data1, error1) => {
         this.loadDay('tomorrow', grade, http, storage, (data2, error2) => {
           if (!error1 && !error2) VpHolder.vp = [data1, data2];
+          console.log(error1, error2, data1, data2);
           callback(error1 || error2);
         });
       });
     });
   }
 
-  public static getDay(day: number) {
-    return VpHolder.vp[day];
-  }
-
   private static loadDay(day: string, grade: any, http: Http, storage: Storage, loaded: Function) {
-    let url = 'https://api.vsa.lohl1kohl.de/vp/' + day + '/' + grade + '.json';
+    let url = 'https://api.vsa.lohl1kohl.de/vp/' + day + '/' + grade + '.json?v=' + crypto.randomBytes(8).toString('hex');
 
     http.get(url).timeout(5000).map(res => res.json()).subscribe(data => {
       console.log('loaded day:  ', day);
@@ -32,7 +30,10 @@ export class VpHolder {
       loaded(data, false);
     }, error => {
       storage.get('vp-' + day + '-' + grade).then(savedVp => {
-        VpHolder.vp = savedVp;
+        if (VpHolder.vp === undefined) {
+          VpHolder.vp = [undefined, undefined];
+        }
+        VpHolder.vp[(day === 'today' ? 0 : 1)] = savedVp;
         loaded(error, true);
       })
     });

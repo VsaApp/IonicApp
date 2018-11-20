@@ -3,7 +3,7 @@ import {NavController, NavParams} from 'ionic-angular';
 
 import {nameOfSubjects} from '../../../app/resources';
 import {VpHolder} from '../../../holder/Vp';
-import {TranslateService} from "@ngx-translate/core";
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'vp-day',
@@ -22,11 +22,11 @@ export class DayOfVp {
     this.today = navParams.data.today;
     console.log('Passed params', this.today);
 
-    if (VpHolder.getDay((this.today ? 0 : 1)) != undefined) {
-      let vp = JSON.parse(JSON.stringify(VpHolder.getDay((this.today ? 0 : 1))));
+    if (VpHolder.vp[this.today ? 0 : 1] != undefined) {
+      let vp = JSON.parse(JSON.stringify(VpHolder.vp[this.today ? 0 : 1]));
       delete vp.changes;
       this.meta = vp;
-      JSON.parse(JSON.stringify(VpHolder.getDay((this.today ? 0 : 1)).changes)).map((change: any) => {
+      JSON.parse(JSON.stringify(VpHolder.vp[this.today ? 0 : 1].changes)).map((change: any) => {
         change.color = 'orange';
         change.lesson = change.lesson.toUpperCase() in nameOfSubjects ? nameOfSubjects[change.lesson.toUpperCase()] : change.lesson;
         if (change.changed.room === change.room) {
