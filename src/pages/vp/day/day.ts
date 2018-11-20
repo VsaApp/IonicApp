@@ -20,7 +20,6 @@ export class DayOfVp {
   constructor(navParams: NavParams, public translate: TranslateService, public navCtrl: NavController) {
     this.title = this.translate.instant('vp');
     this.today = navParams.data.today;
-    console.log('Passed params', this.today);
 
     if (VpHolder.vp[this.today ? 0 : 1] != undefined) {
       let vp = JSON.parse(JSON.stringify(VpHolder.vp[this.today ? 0 : 1]));

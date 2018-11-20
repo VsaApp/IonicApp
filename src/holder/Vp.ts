@@ -13,7 +13,6 @@ export class VpHolder {
       this.loadDay('today', grade, http, storage, (data1, error1) => {
         this.loadDay('tomorrow', grade, http, storage, (data2, error2) => {
           if (!error1 && !error2) VpHolder.vp = [data1, data2];
-          console.log(error1, error2, data1, data2);
           callback(error1 || error2);
         });
       });
@@ -24,8 +23,6 @@ export class VpHolder {
     let url = 'https://api.vsa.lohl1kohl.de/vp/' + day + '/' + grade + '.json?v=' + crypto.randomBytes(8).toString('hex');
 
     http.get(url).timeout(5000).map(res => res.json()).subscribe(data => {
-      console.log('loaded day:  ', day);
-      console.log(' loaded vp: ', data);
       storage.set('vp-' + day + '-' + grade, data);
       loaded(data, false);
     }, error => {

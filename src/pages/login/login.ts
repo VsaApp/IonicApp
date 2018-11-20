@@ -55,7 +55,6 @@ export class LoginPage {
         } catch (e) {
 
         }
-        console.log('Login: ', data);
         if (data === 0) {
           this.wrong = false;
           this.storage.set('username', hashName).then(() => {

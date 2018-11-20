@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController, ToastController} from 'ionic-angular';
+import {NavController, Platform, ToastController} from 'ionic-angular';
 import {Http} from '@angular/http';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {SpHolder} from '../../holder/Sp';
@@ -26,12 +26,16 @@ export class LoadingPage {
   private error1: boolean;
   private error2: boolean;
 
-  constructor(private headerColor: HeaderColor, public translate: TranslateService, public navCtrl: NavController, public toastCtrl: ToastController, public http: Http, public splashScreen: SplashScreen, public storage: Storage) {
-    this.headerColor.tint('#67a744').then(console.log).catch(console.error);
+  constructor(private headerColor: HeaderColor, public platform: Platform, public translate: TranslateService, public navCtrl: NavController, public toastCtrl: ToastController, public http: Http, public splashScreen: SplashScreen, public storage: Storage) {
+    if (!(this.platform.is('core') || this.platform.is('mobileweb'))) {
+      this.headerColor.tint('#67a744');
+    }
     const interval = setInterval(() => {
       if (this.translate.instant('sp') !== 'sp') {
         clearInterval(interval);
-        this.splashScreen.hide();
+        if (!(this.platform.is('core') || this.platform.is('mobileweb'))) {
+          this.splashScreen.hide();
+        }
 
         this.loadOrder = [this.translate.instant('loading_login'), this.translate.instant('loading_sp'), this.translate.instant('loading_vp'), this.translate.instant('loading_app')];
 
@@ -56,7 +60,6 @@ export class LoadingPage {
 
   login(callback: Function) {
     this.storage.keys().then(keys => {
-      console.log('Saved keys: ', keys);
       if (keys.indexOf('username') > -1 && keys.indexOf('password') > -1 && keys.indexOf('grade') > -1) {
         // Get saved login data...
         this.storage.get('username').then(username => {
@@ -64,7 +67,6 @@ export class LoadingPage {
             // Control saved login data...
             let url = 'https://api.vsa.lohl1kohl.de/validate?username=' + username + '&password=' + password + '&v=' + crypto.randomBytes(8).toString('hex');
             this.http.get(url).timeout(5000).map(res => res.json()).subscribe((data) => {
-              console.log('Login: ', data);
               if (data == '0') {
                 callback()
               } else {

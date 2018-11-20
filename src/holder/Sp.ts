@@ -16,8 +16,6 @@ export class SpHolder {
         SpHolder.sp = data;
         callback(false);
         storage.set('sp-' + grade, data);
-        console.log('loaded sp: ', data);
-        console.log(' - from url: ', url);
       }, error => {
         storage.get('sp-' + grade).then(savedSp => {
           SpHolder.sp = savedSp;

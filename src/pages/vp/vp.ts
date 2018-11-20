@@ -17,7 +17,6 @@ export class VpPage {
   constructor(public translate: TranslateService) {
     this.title = this.translate.instant('vp');
     if (VpHolder.vp !== null) {
-      console.log(VpHolder.vp);
       this.titleToday = VpHolder.vp[0].weekday;
       this.titleTomorrow = VpHolder.vp[1].weekday;
     }

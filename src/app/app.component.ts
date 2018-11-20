@@ -39,7 +39,7 @@ export class VsaApp {
       this.rootPage = LoadingPage;
       if (this.platform.is('android')) {
         this.statusBar.backgroundColorByHexString('#67a744');
-      } else {
+      } else if (!(this.platform.is('core') || this.platform.is('mobileweb'))) {
         this.statusBar.styleLightContent();
       }
     });

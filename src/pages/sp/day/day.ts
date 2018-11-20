@@ -19,7 +19,6 @@ export class DayOfSp {
   constructor(navParams: NavParams, public translate: TranslateService, public storage: Storage, public navCtrl: NavController) {
     this.title = this.translate.instant('sp');
     this.name = navParams.data.name;
-    console.log('Passed params', this.name);
     this.setup();
   }
 
@@ -113,14 +112,14 @@ export class DayOfSp {
     }
   }
 
-  activateSelection(unit: any){
+  activateSelection(unit: any) {
     unit.showSelect = true;
     setTimeout(() => {
       unit.isExpanded = true;
     }, 30);
   }
 
-  deactivateSelection(unit: any){
+  deactivateSelection(unit: any) {
     unit.isExpanded = false;
     setTimeout(() => {
       unit.showSelect = false;
