@@ -21,6 +21,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HeaderColor} from '@ionic-native/header-color';
+import {SettingsPage} from "../pages/settings/settings";
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import {HeaderColor} from '@ionic-native/header-color';
     LoginPage,
     LoadingPage,
     LessonComponent,
-    ChangeComponent
+    ChangeComponent,
+    SettingsPage
   ],
   imports: [
     BrowserModule,
@@ -57,7 +59,8 @@ import {HeaderColor} from '@ionic-native/header-color';
     VpPage,
     DayOfVp,
     LoginPage,
-    LoadingPage
+    LoadingPage,
+    SettingsPage
   ],
   providers: [
     StatusBar,

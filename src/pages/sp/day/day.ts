@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 
-import {nameOfSubjects, times} from '../../../app/resources';
+import {nameOfSubjects, storageKeys, times} from '../../../app/resources';
 import {SpHolder} from '../../../holder/Sp';
 import {Storage} from '@ionic/storage';
 import {TranslateService} from '@ngx-translate/core';
@@ -38,7 +38,7 @@ export class DayOfSp {
       let lessons = SpHolder.sp[['MO', 'DI', 'MI', 'DO', 'FR'].indexOf(this.name)].lessons;
       for (let i: number = 0; i < lessons.length; i++) {
         let weekday = ['MO', 'DI', 'MI', 'DO', 'FR'].indexOf(this.name);
-        this.items[i].selected = (await this.storage.get('sp-' + (await this.storage.get('grade')) + '-' + weekday + '-' + i)) || 0;
+        this.items[i].selected = (await this.storage.get('sp-' + (await this.storage.get(storageKeys.grade)) + '-' + weekday + '-' + i)) || 0;
         let unit = lessons[i];
         if (unit.length > 0) {
           for (let j: number = 0; j < unit.length; j++) {
@@ -64,7 +64,7 @@ export class DayOfSp {
               };
             }
           }
-          if ((await this.storage.get('grade') === 'EF') || (await this.storage.get('grade') === 'Q1') || (await this.storage.get('grade') === 'Q2')) {
+          if ((await this.storage.get(storageKeys.grade) === 'EF') || (await this.storage.get(storageKeys.grade) === 'Q1') || (await this.storage.get(storageKeys.grade) === 'Q2')) {
             this.items[i].lessons.push({
               unit: i + 1,
               lesson: this.translate.instant('free_lesson'),
@@ -129,7 +129,7 @@ export class DayOfSp {
   async spSelectRowClicked(unit, i) {
     this.items[unit].selected = i;
     let weekday = ['MO', 'DI', 'MI', 'DO', 'FR'].indexOf(this.name);
-    this.storage.set('sp-' + (await this.storage.get('grade')) + '-' + weekday + '-' + unit, i).then(() => {
+    this.storage.set('sp-' + (await this.storage.get(storageKeys.grade)) + '-' + weekday + '-' + unit, i).then(() => {
       this.deactivateSelection(this.items[unit]);
     });
   }

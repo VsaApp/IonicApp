@@ -19,5 +19,13 @@
   "vp_vp_for": "Vertretungsplan für ",
   "vp_the": ", den ",
   "vp_last_updated_at": "Zu letzt aktualisiert am ",
-  "vp_at": " um "
+  "vp_at": " um ",
+  "settings": "Einstellungen",
+  "settings_app_settings": "APPEINSTELLUNGEN",
+  "settings_personally": "PERSÖNLICHE DATEN",
+  "settings_show_only_filtered_vp": "Nur meinen Vertretungsplan anzeigen",
+  "settings_vp_notifications": "Benarichtigungen für den Vertretugnsplan",
+  "settings_show_vp_in_sp": "Vertretungsplan im Stundenplan anzeigen",
+  "settings_del_cache": "Netzwerk-Cache löschen",
+  "settings_sign_out": "Ausloggen"
 }

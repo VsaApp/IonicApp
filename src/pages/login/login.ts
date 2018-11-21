@@ -1,6 +1,6 @@
 import {Component, ViewChild} from '@angular/core';
 import {NavController} from 'ionic-angular';
-import {grades} from '../../app/resources';
+import {grades, storageKeys} from '../../app/resources';
 import jsSHA from 'jssha';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/timeout';
@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 import {Storage} from '@ionic/storage';
 import {LoadingPage} from '../loading/loading';
 import {TranslateService} from '@ngx-translate/core';
-import crypto from 'crypto';
+import {randomBytes} from 'crypto';
 
 @Component({
   selector: 'page-login',
@@ -48,7 +48,7 @@ export class LoginPage {
     }
     let hashName = LoginPage.getHash(this.username);
     let hashPassword = LoginPage.getHash(this.password);
-    let url = 'https://api.vsa.lohl1kohl.de/validate?username=' + hashName + '&password=' + hashPassword + '&v=' + crypto.randomBytes(8).toString('hex');
+    let url = 'https://api.vsa.lohl1kohl.de/validate?username=' + hashName + '&password=' + hashPassword + '&v=' + randomBytes(8).toString('hex');
     this.http.get(url).timeout(5000).map(res => res.json()).subscribe((data) => {
         try {
           data = parseInt(data);
@@ -57,9 +57,9 @@ export class LoginPage {
         }
         if (data === 0) {
           this.wrong = false;
-          this.storage.set('username', hashName).then(() => {
-            this.storage.set('password', hashPassword).then(() => {
-              this.storage.set('grade', this.grade).then(() => {
+          this.storage.set(storageKeys.username, hashName).then(() => {
+            this.storage.set(storageKeys.password, hashPassword).then(() => {
+              this.storage.set(storageKeys.grade, this.grade).then(() => {
                 this.navCtrl.setRoot(LoadingPage);
               });
             });

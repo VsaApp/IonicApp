@@ -8,6 +8,7 @@ import {SpPage} from '../pages/sp/sp';
 import {VpPage} from '../pages/vp/vp';
 import {Http} from '@angular/http';
 import {LoadingPage} from '../pages/loading/loading';
+import {SettingsPage} from "../pages/settings/settings";
 
 @Component({
   templateUrl: 'app.html'
@@ -28,7 +29,8 @@ export class VsaApp {
         clearInterval(interval);
         this.pages = [
           {title: this.translate.instant('sp'), icon: 'clipboard', component: SpPage},
-          {title: this.translate.instant('vp'), icon: 'list-box', component: VpPage}
+          {title: this.translate.instant('vp'), icon: 'list-box', component: VpPage},
+          {title: this.translate.instant('settings'), icon: 'settings', component: SettingsPage}
         ];
       }
     }, 10);

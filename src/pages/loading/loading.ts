@@ -9,7 +9,8 @@ import {LoginPage} from '../login/login';
 import {SpPage} from '../sp/sp';
 import {TranslateService} from '@ngx-translate/core';
 import {HeaderColor} from '@ionic-native/header-color';
-import crypto from 'crypto';
+import {randomBytes} from "crypto";
+import { storageKeys, defaultPreferences } from "../../app/resources";
 
 @Component({
   selector: 'page-loading',
@@ -37,20 +38,22 @@ export class LoadingPage {
           this.splashScreen.hide();
         }
 
-        this.loadOrder = [this.translate.instant('loading_login'), this.translate.instant('loading_sp'), this.translate.instant('loading_vp'), this.translate.instant('loading_app')];
+        this.setDefaultPreferences(() => {
+          this.loadOrder = [this.translate.instant('loading_login'), this.translate.instant('loading_sp'), this.translate.instant('loading_vp'), this.translate.instant('loading_app')];
 
-        // Load all data...
-        this.operation = this.loadOrder[0];
-        this.progressAnimation();
+          // Load all data...
+          this.operation = this.loadOrder[0];
+          this.progressAnimation();
 
-        this.login(() => {
-          this.nextLoaded();
-          SpHolder.load(http, storage, (error1): void => {
+          this.login(() => {
             this.nextLoaded();
-            VpHolder.load(http, storage, (error2): void => {
+            SpHolder.load(http, storage, (error1): void => {
               this.nextLoaded();
-              this.error1 = error1;
-              this.error2 = error2;
+              VpHolder.load(http, storage, (error2): void => {
+                this.nextLoaded();
+                this.error1 = error1;
+                this.error2 = error2;
+              });
             });
           });
         });
@@ -58,14 +61,29 @@ export class LoadingPage {
     }, 10);
   }
 
+  setDefaultPreferences(callback: Function) {
+    this.storage.keys().then(keys => {
+      if (keys.indexOf(storageKeys.showVpInSp) <= -1){
+        this.storage.set(storageKeys.showVpInSp, defaultPreferences.showVpInSp).then(() => {
+          this.storage.set(storageKeys.showFilteredVp, defaultPreferences.showFilteredVp).then(() => {
+            this.storage.set(storageKeys.vpNotifications, defaultPreferences.vpNotifications).then(() => {
+              callback();
+            });
+          });
+        });
+      }
+      else callback();
+    });
+  }
+
   login(callback: Function) {
     this.storage.keys().then(keys => {
-      if (keys.indexOf('username') > -1 && keys.indexOf('password') > -1 && keys.indexOf('grade') > -1) {
+      if (keys.indexOf(storageKeys.username) > -1 && keys.indexOf(storageKeys.password) > -1 && keys.indexOf(storageKeys.grade) > -1) {
         // Get saved login data...
-        this.storage.get('username').then(username => {
-          this.storage.get('password').then(password => {
+        this.storage.get(storageKeys.username).then(username => {
+          this.storage.get(storageKeys.password).then(password => {
             // Control saved login data...
-            let url = 'https://api.vsa.lohl1kohl.de/validate?username=' + username + '&password=' + password + '&v=' + crypto.randomBytes(8).toString('hex');
+            let url = 'https://api.vsa.lohl1kohl.de/validate?username=' + username + '&password=' + password + '&v=' + randomBytes(8).toString('hex');
             this.http.get(url).timeout(5000).map(res => res.json()).subscribe((data) => {
               if (data == '0') {
                 callback()

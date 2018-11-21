@@ -9,6 +9,21 @@ export const times = [
   '16:05 - 17:05'
 ];
 
+export const storageKeys = {
+  grade: 'grade',
+  password: 'password',
+  username: 'username',
+  showVpInSp: 'show_vp_in_sp',
+  vpNotifications: 'vp_notifications',
+  showFilteredVp: 'show_filtered_vp'
+};
+
+export const defaultPreferences = {
+  showVpInSp: true,
+  vpNotifications: true,
+  showFilteredVp: true
+};
+
 export const nameOfSubjects = {
   'CH': 'Chemie',
   'PH': 'Physik',

@@ -1,0 +1,42 @@
+<ion-header no-border>
+  <ion-navbar>
+    <button color='light' ion-button menuToggle>
+      <ion-icon name='menu'></ion-icon>
+    </button>
+    <ion-title><span color='light'>{{'settings' | translate}}</span></ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item-divider>
+      {{'settings_app_settings' | translate}}
+    </ion-item-divider>
+
+    <ion-item>
+      <ion-label text-wrap>{{'settings_vp_notifications' | translate}}</ion-label>
+      <ion-toggle (ionChange)="valueChanged()" [(ngModel)]="vpNotifications"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label text-wrap>{{'settings_show_only_filtered_vp' | translate}}</ion-label>
+      <ion-toggle (ionChange)="valueChanged()" [(ngModel)]="showOnlyFilteredVP"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label text-wrap>{{'settings_show_vp_in_sp' | translate}}</ion-label>
+      <ion-toggle (ionChange)="valueChanged()" [(ngModel)]="showVpInSp"></ion-toggle>
+    </ion-item>
+    <button (click)="deleteCache()" ion-item>{{'settings_del_cache' | translate}}</button>
+
+    <ion-item-divider class="space-top">
+      {{'settings_personally' | translate}}
+    </ion-item-divider>
+
+    <ion-item>
+      <ion-label text-wrap color="black">{{'login_grade' | translate}}</ion-label>
+      <ion-select (ionChange)="gradeSelected()" [(ngModel)]='grade' color='transparent' id='grade-select'>
+        <ion-option *ngFor='let grade of grades' [value]='grade' id='grade-option'>{{grade}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <button (click)="signOut()" ion-item>{{'settings_sign_out' | translate}}</button>
+  </ion-list>
+</ion-content>

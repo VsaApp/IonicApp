@@ -1,0 +1,35 @@
+page-settings ion-content{
+
+  .space-top {
+    margin-top: 15px;
+  }
+
+  ion-list {
+    padding-bottom: 10px;
+  }
+
+  button {
+    width: 100%;
+    padding-left: 0;
+    background-color: transparent;
+  }
+
+  button:hover {
+    color: gray;
+  }
+
+  ion-item-divider {
+    border-bottom: 3px #cecece solid !important;
+  }
+
+  ion-item {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    border-bottom: 1px #cecece solid !important;
+  }
+
+  [color='black'] {
+    color: black !important;
+  }
+}

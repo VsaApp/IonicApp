@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="de.lohl1kohl.viktoria" version="0.0.1" xmlns="http://www.w3.org/ns/widgets">
-  <name>Viktoria</name>
-  <description>Eine App um für deinen Schulalltag.</description>
-  <author email="viktoria@2bad2c0.de" href="https://viktoria.2bad2c0.de">Finn G. und Jan-Luca D.</author>
+    <name>Viktoria</name>
+    <description>Eine App um für deinen Schulalltag.</description>
+    <author email="viktoria@2bad2c0.de" href="https://viktoria.2bad2c0.de">Finn G. und Jan-Luca D.</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -85,6 +85,6 @@
     <plugin name="cordova-plugin-splashscreen" spec="5.0.2" />
     <plugin name="cordova-plugin-ionic-webview" spec="^2.0.0" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
-  <plugin name="cordova-plugin-headercolor" spec="1.0.0"/>
-    <engine name="android" spec="7.1.1" />
+    <plugin name="cordova-plugin-headercolor" spec="1.0.0" />
+    <engine name="android" spec="~7.1.1" />
 </widget>
