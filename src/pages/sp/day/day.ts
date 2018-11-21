@@ -5,6 +5,7 @@ import {nameOfSubjects, storageKeys, times} from '../../../app/resources';
 import {SpHolder} from '../../../holder/Sp';
 import {Storage} from '@ionic/storage';
 import {TranslateService} from '@ngx-translate/core';
+import {VpHolder} from "../../../holder/Vp";
 
 @Component({
   selector: 'sp-day',
@@ -130,6 +131,7 @@ export class DayOfSp {
     this.items[unit].selected = i;
     let weekday = ['MO', 'DI', 'MI', 'DO', 'FR'].indexOf(this.name);
     this.storage.set('sp-' + (await this.storage.get(storageKeys.grade)) + '-' + weekday + '-' + unit, i).then(() => {
+      VpHolder.updateFilter(this.storage, weekday, unit);
       this.deactivateSelection(this.items[unit]);
     });
   }

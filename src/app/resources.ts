@@ -24,6 +24,14 @@ export const defaultPreferences = {
   showFilteredVp: true
 };
 
+export const weekdays = [
+  'Montag',
+  'Dienstag',
+  'Mittwoch',
+  'Donnerstag',
+  'Freitag'
+];
+
 export const nameOfSubjects = {
   'CH': 'Chemie',
   'PH': 'Physik',

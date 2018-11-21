@@ -9,7 +9,6 @@ import {LoginPage} from '../login/login';
 import {SpPage} from '../sp/sp';
 import {TranslateService} from '@ngx-translate/core';
 import {HeaderColor} from '@ionic-native/header-color';
-import {randomBytes} from "crypto";
 import { storageKeys, defaultPreferences } from "../../app/resources";
 
 @Component({
@@ -83,7 +82,7 @@ export class LoadingPage {
         this.storage.get(storageKeys.username).then(username => {
           this.storage.get(storageKeys.password).then(password => {
             // Control saved login data...
-            let url = 'https://api.vsa.lohl1kohl.de/validate?username=' + username + '&password=' + password + '&v=' + randomBytes(8).toString('hex');
+            let url = 'https://api.vsa.lohl1kohl.de/validate?username=' + username + '&password=' + password + '&v=' + Math.random().toString(36).substr(2);
             this.http.get(url).timeout(5000).map(res => res.json()).subscribe((data) => {
               if (data == '0') {
                 callback()

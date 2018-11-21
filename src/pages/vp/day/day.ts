@@ -1,9 +1,10 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 
-import {nameOfSubjects} from '../../../app/resources';
+import {nameOfSubjects, storageKeys} from '../../../app/resources';
 import {VpHolder} from '../../../holder/Vp';
 import {TranslateService} from '@ngx-translate/core';
+import {Storage} from "@ionic/storage";
 
 @Component({
   selector: 'vp-day',
@@ -11,15 +12,25 @@ import {TranslateService} from '@ngx-translate/core';
 })
 
 export class DayOfVp {
-  today: boolean;
-  items: any = {};
-  meta: { date: string, time: string, update: string, weekday: string };
-  title: string;
-  objectKeys = Object.keys;
+  public today: boolean;
+  public items: any;
+  public myItems: any;
+  public otherItems: any;
+  public undefItems: any;
+  public meta: { date: string, time: string, update: string, weekday: string };
+  public title: string;
+  public sortVp = false;
+  public objectKeys = Object.keys;
 
-  constructor(navParams: NavParams, public translate: TranslateService, public navCtrl: NavController) {
+  constructor(navParams: NavParams, public translate: TranslateService, public navCtrl: NavController, public storage: Storage) {
     this.title = this.translate.instant('vp');
     this.today = navParams.data.today;
+    this.storage.get(storageKeys.showFilteredVp).then((value => this.sortVp = value));
+
+    this.items = {};
+    this.myItems = {};
+    this.otherItems = {};
+    this.undefItems = {};
 
     if (VpHolder.vp[this.today ? 0 : 1] != undefined) {
       let vp = JSON.parse(JSON.stringify(VpHolder.vp[this.today ? 0 : 1]));
@@ -46,10 +57,15 @@ export class DayOfVp {
         }
         return change;
       }).forEach(item => {
-        if (this.items[item.unit] === undefined) {
-          this.items[item.unit] = [];
-        }
+        if (this.items[item.unit] === undefined) this.items[item.unit] = [];
+        if (this.undefItems[item.unit] === undefined && item.myChange == undefined) this.undefItems[item.unit] = [];
+        else if (this.myItems[item.unit] === undefined && item.myChange) this.myItems[item.unit] = [];
+        else if (this.otherItems[item.unit] === undefined && !item.myChange) this.otherItems[item.unit] = [];
+
         this.items[item.unit].push(item);
+        if (item.myChange == undefined) this.undefItems[item.unit].push(item);
+        else if (item.myChange) this.myItems[item.unit].push(item);
+        else this.otherItems[item.unit].push(item);
       })
     }
   }

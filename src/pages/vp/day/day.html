@@ -2,12 +2,41 @@
   <p class='vp-meta'>{{'vp_vp_for' | translate}}<b>{{meta.weekday}}</b>{{'vp_the' | translate}}<b>{{meta.date}}</b></p>
   <p class='vp-meta' id='vp-date'>{{'vp_last_updated_at' | translate}}<b>{{meta.update}}</b>{{'vp_at' | translate}}
     <b>{{meta.time}}</b></p>
-  <ion-grid>
-    <ion-row *ngFor='let unit of objectKeys(items)' id='vp-unit-block'>
-      <ion-col col-1 id='vp-row-unit'>{{unit}}</ion-col>
+  <ion-grid *ngIf="!sortVp">
+    <ion-row *ngFor='let unit of objectKeys(items)' class='vp-unit-block'>
+      <ion-col col-1 class='vp-row-unit'>{{unit}}</ion-col>
       <ion-col col-11>
         <change (click)='vpRowClicked(item)' *ngFor='let item of items[unit]' [item]='item'></change>
       </ion-col>
     </ion-row>
   </ion-grid>
+  <ion-list *ngIf="sortVp">
+    <ion-item-divider *ngIf="objectKeys(myItems).length > 0">{{'vp_my' | translate}}</ion-item-divider>
+    <ion-grid>
+      <ion-row *ngFor='let unit of objectKeys(myItems)' class='vp-unit-block'>
+        <ion-col col-1 class='vp-row-unit'>{{unit}}</ion-col>
+        <ion-col col-11>
+          <change (click)='vpRowClicked(item)' *ngFor='let item of myItems[unit]' [item]='item'></change>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-item-divider *ngIf="objectKeys(undefItems).length > 0">{{'vp_undef' | translate}}</ion-item-divider>
+    <ion-grid>
+      <ion-row *ngFor='let unit of objectKeys(undefItems)' class='vp-unit-block'>
+        <ion-col col-1 class='vp-row-unit'>{{unit}}</ion-col>
+        <ion-col col-11>
+          <change (click)='vpRowClicked(item)' *ngFor='let item of undefItems[unit]' [item]='item'></change>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-item-divider *ngIf="objectKeys(otherItems).length > 0">{{'vp_other' | translate}}</ion-item-divider>
+    <ion-grid>
+      <ion-row *ngFor='let unit of objectKeys(otherItems)' class='vp-unit-block'>
+        <ion-col col-1 class='vp-row-unit'>{{unit}}</ion-col>
+        <ion-col col-11>
+          <change (click)='vpRowClicked(item)' *ngFor='let item of otherItems[unit]' [item]='item'></change>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
 </ion-content>

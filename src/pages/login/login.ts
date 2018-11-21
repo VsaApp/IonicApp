@@ -8,7 +8,6 @@ import 'rxjs/add/operator/map';
 import {Storage} from '@ionic/storage';
 import {LoadingPage} from '../loading/loading';
 import {TranslateService} from '@ngx-translate/core';
-import {randomBytes} from 'crypto';
 
 @Component({
   selector: 'page-login',
@@ -48,7 +47,7 @@ export class LoginPage {
     }
     let hashName = LoginPage.getHash(this.username);
     let hashPassword = LoginPage.getHash(this.password);
-    let url = 'https://api.vsa.lohl1kohl.de/validate?username=' + hashName + '&password=' + hashPassword + '&v=' + randomBytes(8).toString('hex');
+    let url = 'https://api.vsa.lohl1kohl.de/validate?username=' + hashName + '&password=' + hashPassword + '&v=' + Math.random().toString(36).substr(2);
     this.http.get(url).timeout(5000).map(res => res.json()).subscribe((data) => {
         try {
           data = parseInt(data);
