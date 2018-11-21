@@ -131,7 +131,7 @@ export class DayOfSp {
     this.items[unit].selected = i;
     let weekday = ['MO', 'DI', 'MI', 'DO', 'FR'].indexOf(this.name);
     this.storage.set('sp-' + (await this.storage.get(storageKeys.grade)) + '-' + weekday + '-' + unit, i).then(() => {
-      VpHolder.updateFilter(this.storage, weekday, unit);
+      if (VpHolder.isDay(weekday)) VpHolder.updateFilter(this.storage, VpHolder.convertDay(weekday));
       this.deactivateSelection(this.items[unit]);
     });
   }

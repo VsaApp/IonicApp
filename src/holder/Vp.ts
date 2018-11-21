@@ -23,14 +23,9 @@ export class VpHolder {
     });
   }
 
-  public static async updateFilter(storage: Storage, day: number, unit?: number){
-    if (unit){
-      await this.setMyChange(this.vp[day].weekday, this.vp[day].changes[unit], storage);
-    }
-    else {
-      for (let i = 0; i < this.vp[day].changes.length; i++) {
-        await this.setMyChange(this.vp[day].weekday, this.vp[day].changes[i], storage);
-      }
+  public static async updateFilter(storage: Storage, day: number){
+    for (let i = 0; i < this.vp[day].changes.length; i++) {
+      await this.setMyChange(this.vp[day].weekday, this.vp[day].changes[i], storage);
     }
   }
 
@@ -51,14 +46,25 @@ export class VpHolder {
     } else {
       // Find the original subject in the sp...
       let nLessons = SpHolder.sp[weekdays.indexOf(weekday)].lessons[change.unit - 1];
-      let possibleSubjects = nLessons.filter((subject: Subject) => (subject.lesson === change.lesson && subject.teacher === change.teacher));
+      let possibleSubjects = nLessons.filter((subject: Subject) => (subject.lesson === change.lesson));
+      if (possibleSubjects.length > 1) nLessons.filter((subject: Subject) => (subject.lesson === change.lesson && subject.teacher === change.teacher));
       if (possibleSubjects.length === 0) possibleSubjects = nLessons.filter((subject: Subject) => (subject.lesson === change.lesson && subject.room === change.room));
       else if (possibleSubjects.length > 1) possibleSubjects = possibleSubjects.filter((subject: Subject) => (subject.lesson === change.lesson && subject.room === change.room));
 
-      if (possibleSubjects.length !== 1){
-        change.myChange = undefined;
+      if (possibleSubjects.length === 0){
+        let possibleSubjects = nLessons.filter((subject: Subject) => (subject.lesson === change.lesson));
+        let myChange = true;
+        for (let i = 0; i < possibleSubjects.length; i++) if (await SpHolder.isSelected(weekday, change.unit - 1, possibleSubjects[i], storage)) myChange = false;
+        change.myChange = myChange ? false : undefined;
+      }
+      else if (possibleSubjects.length > 1){
+        // When none of the possible subject is selected, than it is not my change...
+        let notMyChange = true;
+        for (let i = 0; i < possibleSubjects.length; i++) if (await SpHolder.isSelected(weekday, change.unit - 1, possibleSubjects[i], storage)) notMyChange = false;
+        change.myChange = notMyChange ? false : undefined;
       }
       else{
+        if (change.teacher.length === 0) change.teacher = possibleSubjects[0].teacher;
         // When the subject is found, then check if this subject is selected...
         change.myChange = await SpHolder.isSelected(weekday, change.unit - 1, possibleSubjects[0], storage);
       }
@@ -76,5 +82,15 @@ export class VpHolder {
         loaded(savedVp, true)
       })
     });
+  }
+
+  public static isDay(weekday: number){
+    return this.vp[0].weekday === weekdays[weekday]|| this.vp[1].weekday === weekdays[weekday];
+  }
+
+  public static convertDay(weekday: number){
+    if (this.vp[0].weekday === weekdays[weekday]) return 0;
+    else if (this.vp[1].weekday === weekdays[weekday]) return 1;
+    return -1;
   }
 }

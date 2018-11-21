@@ -33,12 +33,9 @@ export class SpHolder {
   }
 
   static async isSelected(weekday: string, unit: number, subject: Subject, storage: Storage){
-    let selectedIndex = await storage.get('sp-' + (await storage.get(storageKeys.grade)) + '-' + weekday + '-' + unit.toString());
-    if (selectedIndex == null) selectedIndex = 0;
+    let selectedIndex = await storage.get('sp-' + (await storage.get(storageKeys.grade)) + '-' + weekdays.indexOf(weekday) + '-' + unit.toString());
     let compareIndex = this.sp[weekdays.indexOf(weekday)].lessons[unit].indexOf(subject);
-    console.log("Selected?: ", subject);
-    console.log("--IndexCompare:", compareIndex);
-    console.log("--IndexSelect: ", selectedIndex);
+    if (selectedIndex == null) selectedIndex = 0;
     return compareIndex === selectedIndex;
   }
 }
